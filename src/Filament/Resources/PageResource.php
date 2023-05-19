@@ -3,6 +3,7 @@
 namespace Hup234design\Cms\Filament\Resources;
 
 use Camya\Filament\Forms\Components\TitleWithSlugInput;
+use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PageResource\Pages;
 use Hup234design\Cms\Filament\Resources\PageResource\RelationManagers;
 use Hup234design\Cms\Models\Page;
@@ -28,7 +29,11 @@ class PageResource extends Resource
                     fieldTitle: 'title', // The name of the field in your model that stores the title.
                     fieldSlug: 'slug', // The name of the field in your model that will store the slug.
                 ),
-            ]);
+                TiptapEditor::make('content')
+                    ->profile('simple')
+                    ->maxContentWidth('full')
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
