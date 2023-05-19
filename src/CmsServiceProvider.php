@@ -2,6 +2,8 @@
 
 namespace Hup234design\Cms;
 
+use Filament\Facades\Filament;
+use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 
@@ -34,5 +36,95 @@ class CmsServiceProvider extends PluginServiceProvider
 //            __DIR__ . '/../resources/views/posts' => resource_path('views/vendor/cms/events'),
 //            __DIR__ . '/../resources/views/components' => resource_path('views/vendor/cms/components'),
 //        ], 'cms.views');
+    }
+
+    public function packageBooted(): void
+    {
+        parent::packageBooted();
+
+        Filament::serving(function () {
+//            if (Schema::hasTable('pages')) {
+//                FilamentNavigation::addItemType('Page', [
+//                    Select::make('slug')
+//                        ->label('Pages')
+//                        ->options(
+//                            collect([
+//                                'home' => 'Home Page',
+//                            ])->merge(
+//                                Page::pages()->where('is_home', false)->where('is_visible', true)->pluck('title', 'slug')
+//                            )
+//                        )
+//                ]);
+//                FilamentNavigation::addItemType('Index Page', [
+//                    Select::make('slug')
+//                        ->label('Index Pages')
+//                        ->options([
+//                            'settings' => 'Services',
+//                            'projects_slug' => 'Projects',
+//                            'events_slug' => 'Evnts',
+//                            'testimonials' => 'Testimonials',
+//                            'posts' => 'Posts',
+//                        ])
+//                ]);
+//                FilamentNavigation::addItemType('Service', [
+//                    Select::make('slug')
+//                        ->label('Services')
+//                        ->options(
+//                            Page::services()->where('is_visible', true)->pluck('title', 'slug')
+//                        )
+//                ]);
+//                FilamentNavigation::addItemType('Project', [
+//                    Select::make('slug')
+//                        ->label('Projects')
+//                        ->options(
+//                            Page::projects()->where('is_visible', true)->pluck('title', 'slug')
+//                        )
+//                ]);
+//                FilamentNavigation::addItemType('Event', [
+//                    Select::make('slug')
+//                        ->label('Upcoming Events')
+//                        ->options(
+//                            Page::upcomingEvents()->where('is_visible', true)->pluck('title', 'slug')
+//                        )
+//                ]);
+//            }
+//
+//            Filament::registerNavigationGroups([
+//                'Post Management',
+//                'Page Management',
+//                'Content Management',
+//                'Event Management',
+//                'Media Management',
+//                'Enquiries',
+//                'Settings',
+//            ]);
+//
+//            NavigationResource::navigationGroup("Settings");
+//            NavigationResource::navigationSort(1);
+
+            Filament::registerUserMenuItems([
+                UserMenuItem::make()
+                    ->label('View Site')
+                    //->url(route('home'))
+                    ->url('/')
+                    ->icon('heroicon-s-cog')
+            ]);
+
+//            Filament::registerViteTheme('resources/css/filament.css');
+//
+//            Filament::registerRenderHook(
+//                'body.start',
+//                fn (): string => Blade::render('@livewire(\'media-image-browser\')'),
+//            );
+        });
+
+        // Register any livewire components
+
+        //Livewire::component('heading-block', HeadingBlock::class);
+        //Livewire::component('rich-editor-block', RichEditorBlock::class);
+
+        // Livewire::component('media-image-browser', MediaImageBrowser::class);
+
+        // Livewire::component('enquiry-form', EnquiryForm::class);
     }
 }
