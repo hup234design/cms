@@ -2,7 +2,7 @@
 
 namespace Hup234design\Cms\Http\Controllers;
 
-use Hup234design\Cms\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Hup234design\Cms\Models\Page;
 use Illuminate\View\View;
 

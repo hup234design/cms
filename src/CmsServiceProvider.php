@@ -9,6 +9,7 @@ use Hup234design\Cms\Components\AppLayout;
 use Hup234design\Cms\Filament\Resources\PageResource;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource;
 use Hup234design\Cms\Filament\Resources\PostResource;
+use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use Spatie\LaravelPackageTools\Package;
 
 class CmsServiceProvider extends PluginServiceProvider
@@ -103,18 +104,18 @@ class CmsServiceProvider extends PluginServiceProvider
 //                ]);
 //            }
 //
-//            Filament::registerNavigationGroups([
-//                'Post Management',
-//                'Page Management',
+            Filament::registerNavigationGroups([
+                'Post Management',
+                'Page Management',
 //                'Content Management',
 //                'Event Management',
 //                'Media Management',
 //                'Enquiries',
 //                'Settings',
-//            ]);
-//
-//            NavigationResource::navigationGroup("Settings");
-//            NavigationResource::navigationSort(1);
+            ]);
+
+            NavigationResource::navigationGroup("Settings");
+            NavigationResource::navigationSort(1);
 
             Filament::registerUserMenuItems([
                 UserMenuItem::make()
