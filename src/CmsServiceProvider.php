@@ -5,6 +5,7 @@ namespace Hup234design\Cms;
 use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
+use Hup234design\Cms\Components\AppLayout;
 use Hup234design\Cms\Filament\Resources\PageResource;
 use Spatie\LaravelPackageTools\Package;
 
@@ -20,7 +21,8 @@ class CmsServiceProvider extends PluginServiceProvider
         $package
             ->name('cms')
             ->hasViews('cms')
-            ->hasRoute('web');
+            ->hasRoute('web')
+            ->hasViewComponents('cms', AppLayout::class);
     }
 
     public function packageRegistered(): void
