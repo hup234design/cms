@@ -1,0 +1,39 @@
+{
+    "name": "hup234design/cms",
+    "description": "Package to setup a CMS using Filament Livewire Alpine Tailwind",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hup234design\\Cms\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Dave Walker",
+            "email": "dave@hup234design.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "filament/filament": "^2.0",
+        "illuminate/support": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hup234design\\Cms\\CmsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
