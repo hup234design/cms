@@ -1,5 +1,5 @@
 @if($social_networks)
-    <div class="inline-flex justify-center gap-4">
+    <div class="inline-flex justify-center gap-4 leading-none">
         @foreach ($social_networks as $network)
             @if ($network['is_active'])
 
