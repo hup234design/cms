@@ -7,6 +7,8 @@ use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\AppLayout;
 use Hup234design\Cms\Filament\Resources\PageResource;
+use Hup234design\Cms\Filament\Resources\PostCategoryResource;
+use Hup234design\Cms\Filament\Resources\PostResource;
 use Spatie\LaravelPackageTools\Package;
 
 class CmsServiceProvider extends PluginServiceProvider
@@ -14,6 +16,8 @@ class CmsServiceProvider extends PluginServiceProvider
 
     protected array $resources = [
         PageResource::class,
+        PostCategoryResource::class,
+        PostResource::class,
     ];
 
     public function configurePackage(Package $package): void

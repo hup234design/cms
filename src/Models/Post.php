@@ -8,21 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
-class Page extends Model
+class Post extends Model
 {
     use HasFactory;
     use HasSEO;
 
     protected $guarded = [];
 
-    public $sortable = [
-        'order_column_name' => 'sort_order',
-        'sort_when_creating' => true,
-    ];
-
     protected $casts = [
         'content_blocks' => 'array',
-        'visible' => 'boolean',
+        'published' => 'boolean',
+        'publish_at' => 'datetime',
     ];
 
     public function getDynamicSEOData(): SEOData
@@ -38,7 +34,7 @@ class Page extends Model
 
         // Order by home page and then by sort order
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('sort_order', 'asc');
+            $builder->orderBy('publish_at', 'desc');
         });
     }
 }

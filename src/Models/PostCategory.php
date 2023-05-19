@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
-class Page extends Model
+class PostCategory extends Model
 {
     use HasFactory;
     use HasSEO;
@@ -18,11 +18,6 @@ class Page extends Model
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
-    ];
-
-    protected $casts = [
-        'content_blocks' => 'array',
-        'visible' => 'boolean',
     ];
 
     public function getDynamicSEOData(): SEOData
