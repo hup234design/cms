@@ -6,13 +6,13 @@ use Camya\Filament\Forms\Components\TitleWithSlugInput;
 use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PageResource\Pages;
 use Hup234design\Cms\Filament\Resources\PageResource\RelationManagers;
+use Hup234design\Cms\Filament\Support\FormComponents;
 use Hup234design\Cms\Models\Page;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PageResource extends Resource
@@ -30,8 +30,13 @@ class PageResource extends Resource
                     fieldSlug: 'slug', // The name of the field in your model that will store the slug.
                 ),
                 TiptapEditor::make('content')
-                    ->profile('simple')
-                    ->maxContentWidth('full')
+                    ->profile('custom')
+                    ->maxContentWidth('full'),
+                Forms\Components\Builder::make('content_blocks')
+                    ->blocks(
+                        FormComponents::contentBlocks()
+                    )
+                    ->collapsible()
             ])
             ->columns(1);
     }

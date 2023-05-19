@@ -5,7 +5,11 @@ namespace Hup234design\Cms;
 use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
+use Hup234design\Cms\Components\ContentBlocks;
+use Hup234design\Cms\Filament\Blocks\ImageBlock;
+use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
+use Hup234design\Cms\Filament\Blocks\TipTapBlock;
 use Hup234design\Cms\Filament\Resources\PageResource;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource;
 use Hup234design\Cms\Filament\Resources\PostResource;
@@ -27,7 +31,7 @@ class CmsServiceProvider extends PluginServiceProvider
             ->name('cms')
             ->hasViews('cms')
             ->hasRoute('web')
-            ->hasViewComponents('cms', AppLayout::class);
+            ->hasViewComponents('cms', AppLayout::class, ContentBlocks::class);
     }
 
     public function packageRegistered(): void
@@ -134,11 +138,8 @@ class CmsServiceProvider extends PluginServiceProvider
         });
 
         // Register any livewire components
-
-        //Livewire::component('heading-block', HeadingBlock::class);
-        //Livewire::component('rich-editor-block', RichEditorBlock::class);
-
-        // Livewire::component('media-image-browser', MediaImageBrowser::class);
+        Livewire::component('tip-tap-block', TipTapBlock::class);
+        Livewire::component('image-block', ImageBlock::class);
 
         // Livewire::component('enquiry-form', EnquiryForm::class);
     }

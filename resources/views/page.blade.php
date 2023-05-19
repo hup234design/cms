@@ -7,13 +7,18 @@
     @livewireStyles
 </head>
 <body>
-<div class="my-8 text-center">
-    <h1 class="text-3xl font-bold underline">
-        {{ $page->title }}
-    </h1>
-    <div class="mt-8">
+    <div class="py-8 max-w-7xl mx-auto">
+    <div class="prose max-w-none">
+        <h1>
+            {{ $page->title }}
+        </h1>
         {!! $page->content !!}
     </div>
+
+
+
+        <x-cms-content-blocks :blocks="$page->content_blocks" />
+
     <div class="mt-8 text-sm text-gray-500">
         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
     </div>
