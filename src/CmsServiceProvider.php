@@ -6,7 +6,9 @@ use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\ContentBlocks;
+use Hup234design\Cms\Components\SocialNetworks;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
+use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
 use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
 use Hup234design\Cms\Filament\Blocks\TipTapBlock;
@@ -23,6 +25,7 @@ class CmsServiceProvider extends PluginServiceProvider
         PageResource::class,
         PostCategoryResource::class,
         PostResource::class,
+        SocialNetworkResource::class,
     ];
 
     public function configurePackage(Package $package): void
@@ -31,7 +34,11 @@ class CmsServiceProvider extends PluginServiceProvider
             ->name('cms')
             ->hasViews('cms')
             ->hasRoute('web')
-            ->hasViewComponents('cms', AppLayout::class, ContentBlocks::class);
+            ->hasViewComponents('cms',
+                AppLayout::class,
+                ContentBlocks::class,
+                SocialNetworks::class
+            );
     }
 
     public function packageRegistered(): void
