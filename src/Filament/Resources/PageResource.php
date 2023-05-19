@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Filament\Resources;
 
+use Camya\Filament\Forms\Components\TitleWithSlugInput;
 use Hup234design\Cms\Filament\Resources\PageResource\Pages;
 use Hup234design\Cms\Filament\Resources\PageResource\RelationManagers;
 use Hup234design\Cms\Models\Page;
@@ -23,7 +24,10 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TitleWithSlugInput::make(
+                    fieldTitle: 'title', // The name of the field in your model that stores the title.
+                    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
+                ),
             ]);
     }
 
@@ -31,7 +35,15 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID'),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->since(),
             ])
             ->filters([
                 //
