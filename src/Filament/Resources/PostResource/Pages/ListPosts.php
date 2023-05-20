@@ -13,7 +13,9 @@ class ListPosts extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Create')
+                ->icon('heroicon-s-plus'),
         ];
     }
 }

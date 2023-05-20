@@ -13,7 +13,13 @@ class ListPostCategories extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->slideOver(),
         ];
+    }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'sort_order';
     }
 }

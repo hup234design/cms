@@ -2,8 +2,11 @@
 
 namespace Hup234design\Cms\Filament\Resources;
 
+use Camya\Filament\Forms\Components\TitleWithSlugInput;
+use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource\Pages;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource\RelationManagers;
+use Hup234design\Cms\Filament\Support\FormComponents;
 use Hup234design\Cms\Models\PostCategory;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -23,21 +26,40 @@ class PostCategoryResource extends Resource
     {
         return $form
             ->schema([
-                //
-            ]);
+                TitleWithSlugInput::make(
+                    fieldTitle: 'title', // The name of the field in your model that stores the title.
+                    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
+                    urlPath: '/posts/category/',
+                ),
+                Forms\Components\Textarea::make('description')
+                    ->rows(5),
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID'),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('posts_count')->counts('posts'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->since(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->slideOver(),
+                Tables\Actions\DeleteAction::make()
+                    ->slideOver(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -55,8 +77,6 @@ class PostCategoryResource extends Resource
     {
         return [
             'index' => Pages\ListPostCategories::route('/'),
-            'create' => Pages\CreatePostCategory::route('/create'),
-            'edit' => Pages\EditPostCategory::route('/{record}/edit'),
         ];
     }
 }
