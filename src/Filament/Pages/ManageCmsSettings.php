@@ -41,6 +41,15 @@ class ManageCmsSettings extends Page
                                         ->required(),
                                 ])
                         ]),
+                    Forms\Components\Tabs\Tab::make('Posts')
+                        ->schema([
+                            Forms\Components\TextInput::make('state.posts_title')
+                                ->label('Title')
+                                ->required(),
+                            Forms\Components\TextInput::make('state.posts_slug')
+                                ->label('Slug')
+                                ->required(),
+                        ]),
                 ])
                 ->columnSpan(2)
         ];
