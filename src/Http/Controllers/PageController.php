@@ -10,14 +10,14 @@ class PageController extends Controller
 {
     public function home(): View
     {
-        return view('cms::home');
+        return view('cms::pages.home');
     }
 
     public function page($slug): View
     {
         $page = Page::whereSlug($slug)->firstorFail();
 
-        return view('cms::page', [
+        return view('cms::pages.page', [
             'page' => $page
         ]);
     }

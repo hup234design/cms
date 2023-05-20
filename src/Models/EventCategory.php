@@ -5,21 +5,20 @@ namespace Hup234design\Cms\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
-class Post extends Model
+class EventCategory extends Model
 {
     use HasFactory;
     use HasSEO;
 
     protected $guarded = [];
 
-    protected $casts = [
-        'content_blocks' => 'array',
-        'published' => 'boolean',
-        'publish_at' => 'datetime',
+    public $sortable = [
+        'order_column_name' => 'sort_order',
+        'sort_when_creating' => true,
     ];
 
     public function getDynamicSEOData(): SEOData
@@ -29,14 +28,9 @@ class Post extends Model
         );
     }
 
-    public function category() : BelongsTo
+    public function events() : HasMany
     {
-        return $this->belongsTo(PostCategory::class, 'post_category_id');
-    }
-
-    public function scopePublished($query)
-    {
-        return $query->where('published', true);
+        return $this->hasMany(Event::class);
     }
 
     protected static function boot()
@@ -45,7 +39,7 @@ class Post extends Model
 
         // Order by home page and then by sort order
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('publish_at', 'desc');
+            $builder->orderBy('sort_order', 'asc');
         });
     }
 }

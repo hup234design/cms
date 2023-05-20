@@ -8,6 +8,8 @@ use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\ContentBlocks;
 use Hup234design\Cms\Components\SocialNetworks;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
+use Hup234design\Cms\Filament\Resources\EventCategoryResource;
+use Hup234design\Cms\Filament\Resources\EventResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
 use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
@@ -26,6 +28,8 @@ class CmsServiceProvider extends PluginServiceProvider
         PostCategoryResource::class,
         PostResource::class,
         SocialNetworkResource::class,
+        EventCategoryResource::class,
+        EventResource::class,
     ];
 
     public function configurePackage(Package $package): void

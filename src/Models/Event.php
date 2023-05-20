@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
-class Post extends Model
+class Event extends Model
 {
     use HasFactory;
     use HasSEO;
@@ -19,7 +20,7 @@ class Post extends Model
     protected $casts = [
         'content_blocks' => 'array',
         'published' => 'boolean',
-        'publish_at' => 'datetime',
+        'date' => 'datetime:Y-m-d',
     ];
 
     public function getDynamicSEOData(): SEOData
@@ -31,12 +32,22 @@ class Post extends Model
 
     public function category() : BelongsTo
     {
-        return $this->belongsTo(PostCategory::class, 'post_category_id');
+        return $this->belongsTo(EventCategory::class, 'event_category_id');
     }
 
     public function scopePublished($query)
     {
         return $query->where('published', true);
+    }
+
+    public function scopeUpcoming($query)
+    {
+        return $query->whereDate('date', '>=', Carbon::now());
+    }
+
+    public function scopePrevious($query)
+    {
+        return $query->whereDate('date', '<', Carbon::now());
     }
 
     protected static function boot()
@@ -45,7 +56,7 @@ class Post extends Model
 
         // Order by home page and then by sort order
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('publish_at', 'desc');
+            $builder->orderBy('date', 'desc');
         });
     }
 }

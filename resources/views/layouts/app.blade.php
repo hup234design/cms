@@ -7,17 +7,20 @@
     @livewireStyles
 </head>
 <body>
-<div class="my-8 text-center">
-    <h1 class="text-3xl font-bold underline">
-        {{ $page->title }}
-    </h1>
-    <div class="mt-8">
-        {!! $page->content !!}
-    </div>
-    <div class="mt-8 text-sm text-gray-500">
+<header class="bg-gray-700 h-24 flex items-center justify-center">
+    <span class="font-bold text-lg text-white">
+        {{ config('app.name') }}
+    </span>
+</header>
+<main class="my-16">
+    {{ $slot }}
+</main>
+<footer class="bg-gray-900 h-24 flex items-center justify-center">
+    <span class="text-sm text-gray-100">
         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-    </div>
-</div>
+    </span>
+</footer>
 @livewireScripts
 </body>
 </html>
+
