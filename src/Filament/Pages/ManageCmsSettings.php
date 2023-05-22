@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Hup234design\Cms\CmsSettings;
+use RyanChandler\FilamentNavigation\Filament\Fields\NavigationSelect;
 
 class ManageCmsSettings extends Page
 {
@@ -49,6 +50,23 @@ class ManageCmsSettings extends Page
                             Forms\Components\TextInput::make('state.posts_slug')
                                 ->label('Slug')
                                 ->required(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Navigation')
+                        ->schema([
+                            NavigationSelect::make('state.primary_header_menu_id')
+                                ->label('Primary Header Menu')
+                                ->required(),
+                            NavigationSelect::make('state.secondary_header_menu_id')
+                                ->label('Secondary Header Menu')
+                                ->helperText('This will only be used if configured in site theme')
+                                ->default(""),
+                            NavigationSelect::make('state.primary_footer_menu_id')
+                                ->label('Primary Footer Menu')
+                                ->required(),
+                            NavigationSelect::make('state.secondary_footer_menu_id')
+                                ->label('Secondary Footer Menu')
+                                ->helperText('This will only be used if configured in site theme')
+                                ->default(""),
                         ]),
                 ])
                 ->columnSpan(2)
