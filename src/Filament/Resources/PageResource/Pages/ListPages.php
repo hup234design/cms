@@ -16,4 +16,9 @@ class ListPages extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'sort_order';
+    }
 }
