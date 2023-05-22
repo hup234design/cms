@@ -25,12 +25,12 @@ class AppFooter extends Component
      */
     public function render()
     {
-        $primary_header   = Navigation::find(cms_settings('primary_header_menu_id'));
-        $secondary_header = Navigation::find(cms_settings('secondary_header_menu_id'));
+        $primary_footer   = Navigation::find(cms_settings('primary_footer_menu_id'));
+        $secondary_footer = Navigation::find(cms_settings('secondary_footer_menu_id'));
 
-        return view('cms::components.app-header', [
-            'primary_header'   => $primary_header   ? NavigationMenuLinks::format($primary_header->items)   : null,
-            'secondary_header' => $secondary_header   ? NavigationMenuLinks::format($secondary_header->items)   : null,
+        return view('cms::components.app-footer', [
+            'primary_footer'   => $primary_footer   ? NavigationMenuLinks::format($primary_footer->items)   : null,
+            'secondary_footer' => $secondary_footer   ? NavigationMenuLinks::format($secondary_footer->items)   : null,
         ]);
     }
 }
