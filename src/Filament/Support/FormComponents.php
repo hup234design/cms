@@ -12,12 +12,14 @@ class FormComponents
 {
     public static function contentBlocks(): array
     {
-        return [
-            TipTapBlock::schema(),
-            ImageBlock::schema(),
-            SliderBlock::schema(),
-            GalleryBlock::schema(),
-            ...config('cms.blocks'),
-        ];
+        return array_merge(
+            [
+                TipTapBlock::schema(),
+                ImageBlock::schema(),
+                SliderBlock::schema(),
+                GalleryBlock::schema(),
+            ],
+            config('cms.blocks')
+        );
     }
 }
