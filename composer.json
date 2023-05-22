@@ -32,7 +32,10 @@
     "autoload": {
         "psr-4": {
             "Hup234design\\Cms\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
