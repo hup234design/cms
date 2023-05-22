@@ -5,6 +5,7 @@ namespace Hup234design\Cms;
 use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
+use Hup234design\Cms\Components\AppHeader;
 use Hup234design\Cms\Components\ContentBlocks;
 use Hup234design\Cms\Components\SocialNetworks;
 use Hup234design\Cms\Filament\Blocks\GalleryBlock;
@@ -52,6 +53,7 @@ class CmsServiceProvider extends PluginServiceProvider
             ->hasRoute('web')
             ->hasViewComponents('cms',
                 AppLayout::class,
+                AppHeader::class,
                 ContentBlocks::class,
                 SocialNetworks::class
             );
