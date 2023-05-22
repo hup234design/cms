@@ -27,8 +27,8 @@ class AppHeader extends Component
     {
         //$model = FilamentNavigation::getModel();
 
-        $primary_header   = cms_settings('primary_header_menu_id');
-        $secondary_header = cms_settings('secondary_header_menu_id');
+        $primary_header   = cms_settings('primary_header_menu_id', []);
+        $secondary_header = cms_settings('secondary_header_menu_id', []);
 
         return view('cms::components.app-header', [
             'primary_header'   => $primary_header   ? NavigationMenuLinks::format($primary_header)   : null,
