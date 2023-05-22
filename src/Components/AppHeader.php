@@ -2,9 +2,10 @@
 
 namespace Hup234design\Cms\Components;
 
+use Filament\Navigation\NavigationGroup;
 use Hup234design\Cms\Support\NavigationMenuLinks;
 use Illuminate\View\Component;
-use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class AppHeader extends Component
 {
@@ -25,14 +26,12 @@ class AppHeader extends Component
      */
     public function render()
     {
-        //$model = FilamentNavigation::getModel();
-
-        $primary_header   = cms_settings('primary_header_menu_id', []);
-        $secondary_header = cms_settings('secondary_header_menu_id', []);
+        $primary_header   = Navigation::find(cms_settings('primary_header_menu_id'));
+        $secondary_header = Navigation::find(cms_settings('secondary_header_menu_id'));
 
         return view('cms::components.app-header', [
-            'primary_header'   => $primary_header   ? NavigationMenuLinks::format($primary_header)   : null,
-            'secondary_header' => $secondary_header   ? NavigationMenuLinks::format($secondary_header)   : null,
+            'primary_header'   => $primary_header   ? NavigationMenuLinks::format($primary_header->items)   : null,
+            'secondary_header' => $secondary_header   ? NavigationMenuLinks::format($secondary_header->items)   : null,
         ]);
     }
 }
