@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Filament\Resources;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Camya\Filament\Forms\Components\TitleWithSlugInput;
 use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PageResource\Pages;

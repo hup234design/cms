@@ -2,39 +2,31 @@
 
 namespace Hup234design\Cms\Models;
 
+use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use RalphJSmit\Helpers\Laravel\Concerns\HasFactory;
-use RalphJSmit\Laravel\SEO\Support\HasSEO;
-use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class PostCategory extends Model implements Sortable
+class Gallery extends Model implements Sortable
 {
     use HasFactory;
-    use HasSEO;
     use SortableTrait;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'images' => 'array'
+    ];
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
-
-    public function getDynamicSEOData(): SEOData
-    {
-        return new SEOData(
-            //image: $this->seoImage?->getUrl('seo'),
-        );
-    }
-
-    public function posts() : HasMany
-    {
-        return $this->hasMany(Post::class);
-    }
 
     protected static function boot()
     {

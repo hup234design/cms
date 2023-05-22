@@ -1,5 +1,7 @@
-<div>
-    <div class="prose max-w-none">
-        {!! $data['content'] !!}
+@if ( trim($data['content']) != "")
+    <div class="max-w-7xl mx-auto">
+        <div class="prose max-w-none">
+            {!! $data['content'] !!}
+        </div>
     </div>
-</div>
+@endif

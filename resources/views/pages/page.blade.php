@@ -7,4 +7,7 @@
             {!! $page->content !!}
         </div>
     </div>
+
+    <x-cms-content-blocks :blocks="$page->content_blocks" />
+
 </x-cms-app-layout>

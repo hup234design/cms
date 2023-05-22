@@ -21,6 +21,7 @@ class ImageBlock extends Component
                     ->size('lg')
                     ->constrained(true)
                     ->preserveFilenames()
+                    ->extraAttributes(['curation' => 'dog'])
             ]);
     }
 

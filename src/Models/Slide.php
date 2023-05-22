@@ -2,38 +2,36 @@
 
 namespace Hup234design\Cms\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use RalphJSmit\Helpers\Laravel\Concerns\HasFactory;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class PostCategory extends Model implements Sortable
+class Slide extends Model implements Sortable
 {
     use HasFactory;
-    use HasSEO;
     use SortableTrait;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'links' => 'array'
+    ];
 
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
     ];
 
-    public function getDynamicSEOData(): SEOData
+    public function slider() : BelongsTo
     {
-        return new SEOData(
-            //image: $this->seoImage?->getUrl('seo'),
-        );
-    }
-
-    public function posts() : HasMany
-    {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Slider::class);
     }
 
     protected static function boot()

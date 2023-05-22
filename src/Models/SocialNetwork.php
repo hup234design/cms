@@ -4,9 +4,12 @@ namespace Hup234design\Cms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class SocialNetwork extends Model
+class SocialNetwork extends Model implements Sortable
 {
+    use SortableTrait;
     /**
      * The attributes that are mass assignable.
      *

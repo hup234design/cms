@@ -7,10 +7,14 @@ use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\ContentBlocks;
 use Hup234design\Cms\Components\SocialNetworks;
+use Hup234design\Cms\Filament\Blocks\GalleryBlock;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
+use Hup234design\Cms\Filament\Blocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\EventCategoryResource;
 use Hup234design\Cms\Filament\Resources\EventResource;
+use Hup234design\Cms\Filament\Resources\GalleryResource;
+use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
 use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
@@ -31,6 +35,8 @@ class CmsServiceProvider extends PluginServiceProvider
         SocialNetworkResource::class,
         EventCategoryResource::class,
         EventResource::class,
+        SliderResource::class,
+        GalleryResource::class,
     ];
 
     protected array $pages = [
@@ -40,6 +46,7 @@ class CmsServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
+            ->hasConfigFile('cms')
             ->name('cms')
             ->hasViews('cms')
             ->hasRoute('web')
@@ -57,6 +64,11 @@ class CmsServiceProvider extends PluginServiceProvider
         $this->app->singleton(CmsSettings::class, function () {
             return CmsSettings::make(storage_path('app/settings.json'));
         });
+
+        $this->loadMigrationsFrom([
+            __DIR__ . '/../database/migrations'
+        ]);
+
     }
 
     public function packageBooted(): void
@@ -142,6 +154,8 @@ class CmsServiceProvider extends PluginServiceProvider
         // Register any livewire components
         Livewire::component('tip-tap-block', TipTapBlock::class);
         Livewire::component('image-block', ImageBlock::class);
+        Livewire::component('slider-block', SliderBlock::class);
+        Livewire::component('gallery-block', GalleryBlock::class);
 
         // Livewire::component('enquiry-form', EnquiryForm::class);
     }

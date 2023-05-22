@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class EventCategory extends Model
+class EventCategory extends Model implements Sortable
 {
     use HasFactory;
     use HasSEO;
+    use SortableTrait;
 
     protected $guarded = [];
 
