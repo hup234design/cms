@@ -3,6 +3,7 @@
 namespace Hup234design\Cms;
 
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\AppFooter;
@@ -19,12 +20,15 @@ use Hup234design\Cms\Filament\Resources\EventResource;
 use Hup234design\Cms\Filament\Resources\GalleryResource;
 use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
+use Hup234design\Cms\Models\Page;
+use Illuminate\Support\Facades\Schema;
 use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
 use Hup234design\Cms\Filament\Blocks\TipTapBlock;
 use Hup234design\Cms\Filament\Resources\PageResource;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource;
 use Hup234design\Cms\Filament\Resources\PostResource;
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use Spatie\LaravelPackageTools\Package;
 
@@ -82,52 +86,25 @@ class CmsServiceProvider extends PluginServiceProvider
         parent::packageBooted();
 
         Filament::serving(function () {
-//            if (Schema::hasTable('pages')) {
-//                FilamentNavigation::addItemType('Page', [
-//                    Select::make('slug')
-//                        ->label('Pages')
-//                        ->options(
-//                            collect([
-//                                'home' => 'Home Page',
-//                            ])->merge(
-//                                Page::pages()->where('is_home', false)->where('is_visible', true)->pluck('title', 'slug')
-//                            )
-//                        )
-//                ]);
+            if (Schema::hasTable('pages')) {
+                FilamentNavigation::addItemType('Page', [
+                    Select::make('slug')
+                        ->label('Pages')
+                        ->options(
+                            Page::where('visible', true)->pluck('title', 'slug')
+                        )
+                ]);
 //                FilamentNavigation::addItemType('Index Page', [
 //                    Select::make('slug')
 //                        ->label('Index Pages')
 //                        ->options([
-//                            'settings' => 'Services',
-//                            'projects_slug' => 'Projects',
-//                            'events_slug' => 'Evnts',
-//                            'testimonials' => 'Testimonials',
+//                            'home' => 'Home',
+//                            'events' => 'Events',
 //                            'posts' => 'Posts',
 //                        ])
 //                ]);
-//                FilamentNavigation::addItemType('Service', [
-//                    Select::make('slug')
-//                        ->label('Services')
-//                        ->options(
-//                            Page::services()->where('is_visible', true)->pluck('title', 'slug')
-//                        )
-//                ]);
-//                FilamentNavigation::addItemType('Project', [
-//                    Select::make('slug')
-//                        ->label('Projects')
-//                        ->options(
-//                            Page::projects()->where('is_visible', true)->pluck('title', 'slug')
-//                        )
-//                ]);
-//                FilamentNavigation::addItemType('Event', [
-//                    Select::make('slug')
-//                        ->label('Upcoming Events')
-//                        ->options(
-//                            Page::upcomingEvents()->where('is_visible', true)->pluck('title', 'slug')
-//                        )
-//                ]);
-//            }
-//
+            }
+
             Filament::registerNavigationGroups([
                 'Post Management',
                 'Page Management',
@@ -135,7 +112,7 @@ class CmsServiceProvider extends PluginServiceProvider
 //                'Event Management',
 //                'Media Management',
 //                'Enquiries',
-//                'Settings',
+                'Settings',
             ]);
 
             NavigationResource::navigationGroup("Settings");
