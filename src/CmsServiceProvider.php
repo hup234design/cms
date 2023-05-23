@@ -18,6 +18,7 @@ use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\EventCategoryResource;
 use Hup234design\Cms\Filament\Resources\EventResource;
 use Hup234design\Cms\Filament\Resources\GalleryResource;
+use Hup234design\Cms\Filament\Resources\IndexPageResource;
 use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
 use Hup234design\Cms\Models\Page;
@@ -36,6 +37,7 @@ class CmsServiceProvider extends PluginServiceProvider
 {
 
     protected array $resources = [
+        IndexPageResource::class,
         PageResource::class,
         PostCategoryResource::class,
         PostResource::class,

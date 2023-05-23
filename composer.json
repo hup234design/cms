@@ -31,7 +31,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Hup234design\\Cms\\": "src/"
+            "Hup234design\\Cms\\": "src/",
+            "Hup234design\\Cms\\Database\\Seeders\\": "database/seeders/"
         },
         "files": [
             "src/helpers.php"
