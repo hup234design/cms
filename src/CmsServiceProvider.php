@@ -17,6 +17,7 @@ use Hup234design\Cms\Filament\Blocks\GalleryBlock;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
 use Hup234design\Cms\Filament\Blocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
+use Hup234design\Cms\Filament\Resources\DownloadResource;
 use Hup234design\Cms\Filament\Resources\EventCategoryResource;
 use Hup234design\Cms\Filament\Resources\EventResource;
 use Hup234design\Cms\Filament\Resources\GalleryResource;
@@ -48,6 +49,7 @@ class CmsServiceProvider extends PluginServiceProvider
         EventResource::class,
         SliderResource::class,
         GalleryResource::class,
+        DownloadResource::class
     ];
 
     protected array $pages = [
