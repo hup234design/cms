@@ -5,24 +5,24 @@ namespace Hup234design\Cms\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Hup234design\Cms\Models\IndexPage;
 use Hup234design\Cms\Models\Page;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 
 class PageController extends Controller
 {
-    public function home()
+    public function home(): View
     {
         $page = IndexPage::whereFor('home')->firstorFail();
 
-        return view(View::exists('pages.home') ? 'pages.home' : 'cms::pages.home', [
+        return view('cms::pages.home', [
             'page' => $page
         ]);
     }
 
-    public function page($slug)
+    public function page($slug): View
     {
         $page = Page::whereSlug($slug)->firstorFail();
 
-        return view(View::exists('pages.page') ? 'pages.page' : 'cms::pages.page', [
+        return view('cms::pages.page', [
             'page' => $page
         ]);
     }

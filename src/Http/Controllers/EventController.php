@@ -5,33 +5,33 @@ namespace Hup234design\Cms\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Hup234design\Cms\Models\Event;
 use Hup234design\Cms\Models\EventCategory;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $events = Event::upcoming()->paginate();
 
-        return view(View::exists('events.index') ? 'events.index' : 'cms::events.index', [
+        return view('cms::events.index', [
             'events' => $events,
         ]);
     }
 
-    public function event($slug)
+    public function event($slug): View
     {
         $event = Event::whereSlug($slug)->firstorFail();
 
-        return view(View::exists('pages.home') ? 'events.event' : 'cms::events.event', [
+        return view('cms::events.event', [
             'event' => $event
         ]);
     }
 
-    public function category($slug)
+    public function category($slug): View
     {
         $category = EventCategory::whereSlug($slug)->firstorFail();
 
-        return view(View::exists('events.category') ? 'events.category' : 'cms::events.category', [
+        return view('cms::events.category', [
             'category' => $category
         ]);
     }
