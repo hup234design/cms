@@ -1,10 +1,10 @@
 <x-cms-app-layout>
-    <div class="max-w-7xl mx-auto">
+    <x-cms-events-layout>
         <div class="prose max-w-none">
             <h1>
                 {{ $event->title }}
             </h1>
             {!! $event->content !!}
         </div>
-    </div>
+    </x-cms-events-layout>
 </x-cms-app-layout>

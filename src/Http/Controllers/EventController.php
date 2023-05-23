@@ -11,7 +11,11 @@ class EventController extends Controller
 {
     public function index()
     {
-        return view(View::exists('events.index') ? 'events.index' : 'cms::events.index');
+        $events = Event::upcoming()->paginate();
+
+        return view(View::exists('events.index') ? 'events.index' : 'cms::events.index', [
+            'events' => $events,
+        ]);
     }
 
     public function event($slug)

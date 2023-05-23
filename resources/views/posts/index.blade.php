@@ -1,9 +1,9 @@
 <x-cms-app-layout>
-    <div class="max-w-7xl mx-auto">
+    <x-cms-posts-layout>
         <div class="prose max-w-none">
             <h1>
                 POSTS
             </h1>
         </div>
-    </div>
+    </x-cms-posts-layout>
 </x-cms-app-layout>
