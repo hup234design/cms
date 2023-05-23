@@ -9,25 +9,25 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        return view('cms::posts.index');
+        return view(View::exists('posts.index') ? 'posts.index' : 'cms::posts.index');
     }
 
-    public function post($slug): View
+    public function post($slug)
     {
         $post = Post::whereSlug($slug)->firstorFail();
 
-        return view('cms::posts.post', [
+        return view(View::exists('posts.post') ? 'posts.post' : 'cms::posts.post', [
             'post' => $post
         ]);
     }
 
-    public function category($slug): View
+    public function category($slug)
     {
         $category = PostCategory::whereSlug($slug)->firstorFail();
 
-        return view('cms::posts.category', [
+        return view(View::exists('posts.category') ? 'posts.category' : 'cms::posts.category', [
             'category' => $category
         ]);
     }
