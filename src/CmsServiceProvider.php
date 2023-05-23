@@ -96,15 +96,15 @@ class CmsServiceProvider extends PluginServiceProvider
                             Page::where('visible', true)->pluck('title', 'slug')
                         )
                 ]);
-//                FilamentNavigation::addItemType('Index Page', [
-//                    Select::make('slug')
-//                        ->label('Index Pages')
-//                        ->options([
-//                            'home' => 'Home',
-//                            'events' => 'Events',
-//                            'posts' => 'Posts',
-//                        ])
-//                ]);
+                FilamentNavigation::addItemType('Index Page', [
+                    Select::make('slug')
+                        ->label('Index Pages')
+                        ->options([
+                            'home' => 'Home',
+                            'events' => 'Events',
+                            'posts' => 'Posts',
+                        ])
+                ]);
             }
 
             Filament::registerNavigationGroups([

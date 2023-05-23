@@ -27,7 +27,7 @@ class IndexPageSeeder extends Seeder
 
         IndexPage::firstOrCreate([
             'for' => 'events',
-            'title' => 'Evvents',
+            'title' => 'Events',
             'visible' => true,
         ]);
     }
