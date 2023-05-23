@@ -6,7 +6,7 @@ use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\IndexPageResource\Pages;
 use Hup234design\Cms\Filament\Resources\IndexPageResource\RelationManagers;
 use Hup234design\Cms\Filament\Support\FormComponents;
-use Hup234design\Cms\Models\Page;
+use Hup234design\Cms\Models\IndexPage;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Filament\Tables;
 
 class IndexPageResource extends Resource
 {
-    protected static ?string $model = Page::class;
+    protected static ?string $model = IndexPage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 

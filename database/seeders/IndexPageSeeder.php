@@ -19,6 +19,16 @@ class IndexPageSeeder extends Seeder
             'visible' => true,
         ]);
 
-        $this->i
+        IndexPage::firstOrCreate([
+            'for' => 'posts',
+            'title' => 'Posts',
+            'visible' => true,
+        ]);
+
+        IndexPage::firstOrCreate([
+            'for' => 'events',
+            'title' => 'Evvents',
+            'visible' => true,
+        ]);
     }
 }
