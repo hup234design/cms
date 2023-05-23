@@ -2,7 +2,9 @@
 
 namespace Hup234design\Cms\Components;
 
+use Closure;
 use Hup234design\Cms\Models\SocialNetwork;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class SocialNetworks extends Component
@@ -22,9 +24,9 @@ class SocialNetworks extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|Closure|string
      */
-    public function render()
+    public function render():  View|Closure|string
     {
         $social_networks = SocialNetwork::active()->get();
 

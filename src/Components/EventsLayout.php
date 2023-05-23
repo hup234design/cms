@@ -4,7 +4,8 @@ namespace Hup234design\Cms\Components;
 
 use Closure;
 use Hup234design\Cms\Models\Event;
-use Illuminate\Support\View;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class EventsLayout extends Component
 {
@@ -19,7 +20,7 @@ class EventsLayout extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View
+    public function render():  View|Closure|string
     {
         $upcoming_events = Event::upcoming()->get();
         return view('cms::layouts.events', [
