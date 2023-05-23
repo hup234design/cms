@@ -14,6 +14,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Hup234design\Cms\Models\Slider;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PageResource extends Resource
@@ -30,6 +31,16 @@ class PageResource extends Resource
                     fieldTitle: 'title', // The name of the field in your model that stores the title.
                     fieldSlug: 'slug', // The name of the field in your model that will store the slug.
                 ),
+                Forms\Components\Section::make('Header')
+                    ->schema([
+                        Forms\Components\Builder::make('header_blocks')
+                            ->blocks(
+                                FormComponents::headerBlocks()
+                            )
+                            ->collapsible()
+                    ])
+                    ->collapsible()
+                    ->collapsed(true),
                 TiptapEditor::make('content')
                     ->profile('custom')
                     ->maxContentWidth('full'),

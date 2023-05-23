@@ -1,5 +1,10 @@
 <x-cms-app-layout>
-    <div class="max-w-7xl mx-auto">
+
+    <x-slot name="header">
+        <x-cms-header-blocks :blocks="$page->header_blocks" />
+    </x-slot>
+
+    <div class="container">
         <div class="prose max-w-none">
             <h1>
                 {{ $page->title }}

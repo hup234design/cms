@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Models;
 
+use Hup234design\Cms\Traits\HasSlider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ class Page extends Model implements Sortable
     use HasFactory;
     use HasSEO;
     use SortableTrait;
+    use HasSlider;
 
     protected $guarded = [];
 
@@ -25,6 +27,7 @@ class Page extends Model implements Sortable
 
     protected $casts = [
         'content_blocks' => 'array',
+        'header_blocks' => 'array',
         'visible' => 'boolean',
     ];
 

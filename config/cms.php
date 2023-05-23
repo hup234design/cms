@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'blocks' => [],
+    'content_blocks' => [],
+    'header_blocks' => [],
 ];

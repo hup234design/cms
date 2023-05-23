@@ -8,6 +8,9 @@
 </head>
 <body>
 <x-cms-app-header />
+@isset($header)
+    {{ $header }}
+@endisset
 <main class="my-16">
     {{ $slot }}
 </main>

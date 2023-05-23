@@ -8,6 +8,7 @@ use Filament\PluginServiceProvider;
 use Hup234design\Cms\Components\AppFooter;
 use Hup234design\Cms\Components\AppHeader;
 use Hup234design\Cms\Components\ContentBlocks;
+use Hup234design\Cms\Components\HeaderBlocks;
 use Hup234design\Cms\Components\SocialNetworks;
 use Hup234design\Cms\Filament\Blocks\GalleryBlock;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
@@ -56,6 +57,7 @@ class CmsServiceProvider extends PluginServiceProvider
                 AppLayout::class,
                 AppHeader::class,
                 AppFooter::class,
+                HeaderBlocks::class,
                 ContentBlocks::class,
                 SocialNetworks::class
             );

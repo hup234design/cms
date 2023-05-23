@@ -16,10 +16,19 @@ class FormComponents
             [
                 TipTapBlock::schema(),
                 ImageBlock::schema(),
-                SliderBlock::schema(),
                 GalleryBlock::schema(),
             ],
-            config('cms.blocks')
+            config('cms.content_blocks')
+        );
+    }
+
+    public static function headerBlocks(): array
+    {
+        return array_merge(
+            [
+                SliderBlock::schema(),
+            ],
+            config('cms.header_blocks')
         );
     }
 }

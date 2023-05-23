@@ -1,5 +1,5 @@
 @if($media)
-    <div class="max-w-7xl mx-auto">
+    <div class="container">
         @if ($media->hasCuration('dog'))
             <x-curator-curation :media="$media" curation="dog" />
         @else
