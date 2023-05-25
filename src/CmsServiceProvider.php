@@ -18,12 +18,15 @@ use Hup234design\Cms\Filament\Blocks\ImageBlock;
 use Hup234design\Cms\Filament\Blocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\DownloadResource;
+use Hup234design\Cms\Filament\Resources\EnquiryBlockResource;
+use Hup234design\Cms\Filament\Resources\EnquiryResource;
 use Hup234design\Cms\Filament\Resources\EventCategoryResource;
 use Hup234design\Cms\Filament\Resources\EventResource;
 use Hup234design\Cms\Filament\Resources\GalleryResource;
 use Hup234design\Cms\Filament\Resources\IndexPageResource;
 use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
+use Hup234design\Cms\Models\IndexPage;
 use Hup234design\Cms\Models\Page;
 use Illuminate\Support\Facades\Schema;
 use Livewire\Livewire;
@@ -49,7 +52,9 @@ class CmsServiceProvider extends PluginServiceProvider
         EventResource::class,
         SliderResource::class,
         GalleryResource::class,
-        DownloadResource::class
+        DownloadResource::class,
+        EnquiryResource::class,
+        EnquiryBlockResource::class,
     ];
 
     protected array $pages = [
@@ -87,6 +92,15 @@ class CmsServiceProvider extends PluginServiceProvider
             __DIR__ . '/../database/migrations'
         ]);
 
+        $this->publishes([
+            __DIR__ . '/../resources/views/layouts' => resource_path('views/vendor/cms/layouts'),
+            __DIR__ . '/../resources/views/pages' => resource_path('views/vendor/cms/pages'),
+            __DIR__ . '/../resources/views/posts' => resource_path('views/vendor/cms/posts'),
+            __DIR__ . '/../resources/views/events' => resource_path('views/vendor/cms/services'),
+            __DIR__ . '/../resources/views/components' => resource_path('views/vendor/cms/components'),
+            __DIR__ . '/../resources/views/blocks' => resource_path('views/vendor/cms/blocks'),
+        ], 'cms.views');
+
     }
 
     public function packageBooted(): void
@@ -105,11 +119,9 @@ class CmsServiceProvider extends PluginServiceProvider
                 FilamentNavigation::addItemType('Index Page', [
                     Select::make('slug')
                         ->label('Index Pages')
-                        ->options([
-                            'home' => 'Home',
-                            'events' => 'Events',
-                            'posts' => 'Posts',
-                        ])
+                        ->options(
+                            IndexPage::all()->pluck('title','for')
+                        )
                 ]);
             }
 

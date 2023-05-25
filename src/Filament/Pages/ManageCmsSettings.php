@@ -16,7 +16,7 @@ class ManageCmsSettings extends Page
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
-    protected static ?string $title       = 'Settings';
+    protected static ?string $title = 'Settings';
 
     protected static string $view = 'cms::filament.pages.cms-settings';
 
@@ -41,6 +41,32 @@ class ManageCmsSettings extends Page
                                         ->default(config('app.name'))
                                         ->required(),
                                 ])
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Events')
+                        ->schema([
+                            Forms\Components\Toggle::make('state.events_enabled')
+                                ->label('Enabled')
+                                ->default(true),
+                            Forms\Components\TextInput::make('state.events_title')
+                                ->label('Title')
+                                ->required(),
+                            Forms\Components\TextInput::make('state.events_slug')
+                                ->label('Slug')
+                                ->required(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Enquiries')
+                        ->schema([
+                            Forms\Components\Toggle::make('state.enquiries_enabled')
+                                ->label('Enabled')
+                                ->default(true),
+                            Forms\Components\TextInput::make('state.enquiries_max_characters')
+                                ->label('Max Characters')
+                                ->numeric()
+                                ->required()
+                                ->minValue(500)
+                                ->maxValue(2500)
+                                ->step(50)
+                                ->default(500),
                         ]),
                     Forms\Components\Tabs\Tab::make('Posts')
                         ->schema([
