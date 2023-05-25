@@ -53,8 +53,8 @@ class CmsServiceProvider extends PluginServiceProvider
         SliderResource::class,
         GalleryResource::class,
         DownloadResource::class,
-        EnquiryResource::class,
-        EnquiryBlockResource::class,
+        //EnquiryResource::class,
+        //EnquiryBlockResource::class,
     ];
 
     protected array $pages = [
@@ -67,7 +67,7 @@ class CmsServiceProvider extends PluginServiceProvider
             ->hasConfigFile('cms')
             ->name('cms')
             ->hasViews('cms')
-            //->hasRoute('web')
+            ->hasRoute('web')
             ->hasViewComponents('cms',
                 AppLayout::class,
                 PostsLayout::class,
