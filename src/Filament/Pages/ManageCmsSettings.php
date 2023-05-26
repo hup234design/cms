@@ -28,33 +28,33 @@ class ManageCmsSettings extends Page
         $this->state = $settings->all();
 
         $requiredKeys = [
-            "site_name",
-            "header_image_id",
-            "posts_slug",
-            "posts_title",
-            "secondary_footer_menu_id",
-            "primary_footer_menu_id",
-            "secondary_header_menu_id",
-            "primary_header_menu_id",
-            "contact_email",
-            "contact_address",
-            "contact_map",
-            "enquiries_enabled",
-            "enquiries_max_characters",
-            "events_enabled",
-            "events_slug",
-            "events_title",
-            "services_enabled",
-            "services_slug",
-            "services_title",
-            "testimonials_enabled",
-            "testimonials_slug",
-            "testimonials_title"
+            "site_name" => config('app.name'),
+            "header_image_id" => "",
+            "posts_slug" => "blog",
+            "posts_title" => "Blog",
+            "secondary_footer_menu_id" => "",
+            "primary_footer_menu_id" => "",
+            "secondary_header_menu_id" => "",
+            "primary_header_menu_id" => "",
+            "contact_email" => "",
+            "contact_address" => "",
+            "contact_map" => "",
+            "enquiries_enabled" => "0",
+            "enquiries_max_characters" => "1000",
+            "events_enabled" => "0",
+            "events_slug" => "events",
+            "events_title" => "Events",
+            "services_enabled" => "0",
+            "services_slug" => "services",
+            "services_title" => "Services",
+            "testimonials_enabled" => "0",
+            "testimonials_slug" => "testimonials",
+            "testimonials_title" => "Testimonials"
         ];
 
-        foreach ($requiredKeys as $key) {
+        foreach ($requiredKeys as $key=>$value) {
             if (!array_key_exists($key, $this->state)) {
-                $this->state[$key] = "";
+                $this->state[$key] = $value;
             }
         }
     }
