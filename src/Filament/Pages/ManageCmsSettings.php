@@ -70,7 +70,6 @@ class ManageCmsSettings extends Page
                                 ->schema([
                                     Forms\Components\TextInput::make('state.site_name')
                                         ->label('Site Name')
-                                        ->default(config('app.name'))
                                         ->required(),
                                     CuratorPicker::make('state.header_image_id')
                                         ->label('Default Header Image')
@@ -83,8 +82,7 @@ class ManageCmsSettings extends Page
                     Forms\Components\Tabs\Tab::make('Events')
                         ->schema([
                             Forms\Components\Toggle::make('state.events_enabled')
-                                ->label('Enabled')
-                                ->default(false),
+                                ->label('Enabled'),
                             Forms\Components\TextInput::make('state.events_title')
                                 ->label('Title')
                                 ->required(),
@@ -95,15 +93,12 @@ class ManageCmsSettings extends Page
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
                             Forms\Components\Toggle::make('state.services_enabled')
-                                ->label('Enabled')
-                                ->default(false),
+                                ->label('Enabled'),
                             Forms\Components\TextInput::make('state.services_title')
                                 ->label('Title')
-                                ->default('Services')
                                 ->required(),
                             Forms\Components\TextInput::make('state.services_slug')
                                 ->label('Slug')
-                                ->default('services')
                                 ->required(),
                         ]),
                     Forms\Components\Tabs\Tab::make('Testimonials')
@@ -113,36 +108,30 @@ class ManageCmsSettings extends Page
                                 ->default(true),
                             Forms\Components\TextInput::make('state.testimonials_title')
                                 ->label('Title')
-                                ->default('Testimonials')
                                 ->required(),
                             Forms\Components\TextInput::make('state.testimonials_slug')
                                 ->label('Slug')
-                                ->default('testimonials')
                                 ->required(),
                         ]),
                     Forms\Components\Tabs\Tab::make('Enquiries')
                         ->schema([
                             Forms\Components\Toggle::make('state.enquiries_enabled')
-                                ->label('Enabled')
-                                ->default(false),
+                                ->label('Enabled'),
                             Forms\Components\TextInput::make('state.enquiries_max_characters')
                                 ->label('Max Characters')
                                 ->numeric()
                                 ->required()
                                 ->minValue(500)
                                 ->maxValue(2500)
-                                ->step(50)
-                                ->default(500),
+                                ->step(50),
                         ]),
                     Forms\Components\Tabs\Tab::make('Posts')
                         ->schema([
                             Forms\Components\TextInput::make('state.posts_title')
                                 ->label('Title')
-                                ->default('Blog')
                                 ->required(),
                             Forms\Components\TextInput::make('state.posts_slug')
                                 ->label('Slug')
-                                ->default('blog')
                                 ->required(),
                         ]),
                     Forms\Components\Tabs\Tab::make('Contact')
@@ -173,15 +162,13 @@ class ManageCmsSettings extends Page
                                 ->required(),
                             NavigationSelect::make('state.secondary_header_menu_id')
                                 ->label('Secondary Header Menu')
-                                ->helperText('This will only be used if configured in site theme')
-                                ->default(""),
+                                ->helperText('This will only be used if configured in site theme'),
                             NavigationSelect::make('state.primary_footer_menu_id')
                                 ->label('Primary Footer Menu')
                                 ->required(),
                             NavigationSelect::make('state.secondary_footer_menu_id')
                                 ->label('Secondary Footer Menu')
-                                ->helperText('This will only be used if configured in site theme')
-                                ->default(""),
+                                ->helperText('This will only be used if configured in site theme'),
                         ]),
                 ])
                 ->columnSpan(2)
