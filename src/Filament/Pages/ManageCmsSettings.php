@@ -77,6 +77,27 @@ class ManageCmsSettings extends Page
                                 ->label('Slug')
                                 ->required(),
                         ]),
+                    Forms\Components\Tabs\Tab::make('Contact')
+                        ->schema([
+                            Forms\Components\TextInput::make('state.contact_name')
+                                ->label('Contact Name')
+                                ->nullable(),
+                            Forms\Components\TextInput::make('state.contact_email')
+                                ->label('Email')
+                                ->email()
+                                ->nullable(),
+                            Forms\Components\TextInput::make('state.contact_telephone')
+                                ->label('Telephone')
+                                ->nullable(),
+                            Forms\Components\Textarea::make('state.contact_address')
+                                ->label('Address')
+                                ->rows(3)
+                                ->nullable(),
+                            Forms\Components\Textarea::make('state.contact_map')
+                                ->label('Embedded Map Code')
+                                ->rows(5)
+                                ->nullable(),
+                        ]),
                     Forms\Components\Tabs\Tab::make('Navigation')
                         ->schema([
                             NavigationSelect::make('state.primary_header_menu_id')
