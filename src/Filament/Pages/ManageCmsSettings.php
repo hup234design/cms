@@ -3,6 +3,7 @@
 namespace Hup234design\Cms\Filament\Pages;
 
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Closure;
 use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -83,13 +84,17 @@ class ManageCmsSettings extends Page
                         ->schema([
                             Forms\Components\Toggle::make('state.events_enabled')
                                 ->label('Enabled'),
-                            Forms\Components\TextInput::make('state.events_title')
-                                ->label('Title')
-                                ->required(),
-                            Forms\Components\TextInput::make('state.events_slug')
-                                ->label('Slug')
-                                ->required(),
-                        ]),
+                            Forms\Components\Group::make()
+                                ->schema([
+                                Forms\Components\TextInput::make('state.events_title')
+                                    ->label('Title')
+                                    ->required(),
+                                Forms\Components\TextInput::make('state.events_slug')
+                                    ->label('Slug')
+                                    ->required(),
+                                ])
+                                ->hidden(fn (Closure $get) => ! $get('state.events_enabled')),
+                            ]),
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
                             Forms\Components\Toggle::make('state.services_enabled')
