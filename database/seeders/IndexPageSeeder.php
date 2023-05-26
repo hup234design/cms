@@ -30,5 +30,17 @@ class IndexPageSeeder extends Seeder
             'title' => 'Events',
             'visible' => true,
         ]);
+
+        IndexPage::firstOrCreate([
+            'for' => 'services',
+            'title' => 'Services',
+            'visible' => true,
+        ]);
+
+        IndexPage::firstOrCreate([
+            'for' => 'testimonials',
+            'title' => 'Testimonials',
+            'visible' => true,
+        ]);
     }
 }

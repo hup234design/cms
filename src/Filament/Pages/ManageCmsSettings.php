@@ -43,7 +43,13 @@ class ManageCmsSettings extends Page
             "enquiries_max_characters",
             "events_enabled",
             "events_slug",
-            "events_title"
+            "events_title",
+            "services_enabled",
+            "services_slug",
+            "services_title",
+            "testimonials_enabled",
+            "testimonials_slug",
+            "testimonials_title"
         ];
 
         foreach ($requiredKeys as $key) {
@@ -78,7 +84,7 @@ class ManageCmsSettings extends Page
                         ->schema([
                             Forms\Components\Toggle::make('state.events_enabled')
                                 ->label('Enabled')
-                                ->default(true),
+                                ->default(false),
                             Forms\Components\TextInput::make('state.events_title')
                                 ->label('Title')
                                 ->required(),
@@ -86,11 +92,39 @@ class ManageCmsSettings extends Page
                                 ->label('Slug')
                                 ->required(),
                         ]),
+                    Forms\Components\Tabs\Tab::make('Services')
+                        ->schema([
+                            Forms\Components\Toggle::make('state.services_enabled')
+                                ->label('Enabled')
+                                ->default(false),
+                            Forms\Components\TextInput::make('state.services_title')
+                                ->label('Title')
+                                ->default('Services')
+                                ->required(),
+                            Forms\Components\TextInput::make('state.services_slug')
+                                ->label('Slug')
+                                ->default('services')
+                                ->required(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Testimonials')
+                        ->schema([
+                            Forms\Components\Toggle::make('state.testimonials_enabled')
+                                ->label('Enabled')
+                                ->default(true),
+                            Forms\Components\TextInput::make('state.testimonials_title')
+                                ->label('Title')
+                                ->default('Testimonials')
+                                ->required(),
+                            Forms\Components\TextInput::make('state.testimonials_slug')
+                                ->label('Slug')
+                                ->default('testimonials')
+                                ->required(),
+                        ]),
                     Forms\Components\Tabs\Tab::make('Enquiries')
                         ->schema([
                             Forms\Components\Toggle::make('state.enquiries_enabled')
                                 ->label('Enabled')
-                                ->default(true),
+                                ->default(false),
                             Forms\Components\TextInput::make('state.enquiries_max_characters')
                                 ->label('Max Characters')
                                 ->numeric()
@@ -104,9 +138,11 @@ class ManageCmsSettings extends Page
                         ->schema([
                             Forms\Components\TextInput::make('state.posts_title')
                                 ->label('Title')
+                                ->default('Blog')
                                 ->required(),
                             Forms\Components\TextInput::make('state.posts_slug')
                                 ->label('Slug')
+                                ->default('blog')
                                 ->required(),
                         ]),
                     Forms\Components\Tabs\Tab::make('Contact')
