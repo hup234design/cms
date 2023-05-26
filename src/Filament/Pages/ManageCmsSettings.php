@@ -127,6 +127,7 @@ class ManageCmsSettings extends Page
                                     Forms\Components\TextInput::make('state.testimonials_slug')
                                         ->label('Slug')
                                         ->required(),
+                                ])
                                 ->hidden(fn (Closure $get) => ! $get('state.testimonials_enabled') ),
                         ]),
                     Forms\Components\Tabs\Tab::make('Enquiries')
@@ -143,6 +144,7 @@ class ManageCmsSettings extends Page
                                         ->minValue(500)
                                         ->maxValue(2500)
                                         ->step(50),
+                                ])
                                 ->hidden(fn (Closure $get) => ! $get('state.enquiries_enabled') ),
                         ]),
                     Forms\Components\Tabs\Tab::make('Posts')
