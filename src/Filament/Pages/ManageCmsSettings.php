@@ -58,6 +58,8 @@ class ManageCmsSettings extends Page
                 $this->state[$key] = $value;
             }
         }
+
+        $this->form->fill($this->state);
     }
 
     protected function getFormSchema(): array
@@ -87,12 +89,12 @@ class ManageCmsSettings extends Page
                                 ->label('Enabled'),
                             Forms\Components\Group::make()
                                 ->schema([
-                                Forms\Components\TextInput::make('state.events_title')
-                                    ->label('Title')
-                                    ->required(),
-                                Forms\Components\TextInput::make('state.events_slug')
-                                    ->label('Slug')
-                                    ->required(),
+                                    Forms\Components\TextInput::make('state.events_title')
+                                        ->label('Title')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('state.events_slug')
+                                        ->label('Slug')
+                                        ->required(),
                                 ])
                                 ->hidden(fn (Closure $get) => intval($get('state.events_enabled')) == 0 ),
                             ]),
