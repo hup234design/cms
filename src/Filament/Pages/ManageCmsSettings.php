@@ -117,26 +117,33 @@ class ManageCmsSettings extends Page
                     Forms\Components\Tabs\Tab::make('Testimonials')
                         ->schema([
                             Forms\Components\Toggle::make('state.testimonials_enabled')
-                                ->label('Enabled')
-                                ->default(true),
-                            Forms\Components\TextInput::make('state.testimonials_title')
-                                ->label('Title')
-                                ->required(),
-                            Forms\Components\TextInput::make('state.testimonials_slug')
-                                ->label('Slug')
-                                ->required(),
+                                ->reactive()
+                                ->label('Enabled'),
+                            Forms\Components\Group::make()
+                                ->schema([
+                                    Forms\Components\TextInput::make('state.testimonials_title')
+                                        ->label('Title')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('state.testimonials_slug')
+                                        ->label('Slug')
+                                        ->required(),
+                                ->hidden(fn (Closure $get) => ! $get('state.testimonials_enabled') ),
                         ]),
                     Forms\Components\Tabs\Tab::make('Enquiries')
                         ->schema([
                             Forms\Components\Toggle::make('state.enquiries_enabled')
+                                ->reactive()
                                 ->label('Enabled'),
-                            Forms\Components\TextInput::make('state.enquiries_max_characters')
-                                ->label('Max Characters')
-                                ->numeric()
-                                ->required()
-                                ->minValue(500)
-                                ->maxValue(2500)
-                                ->step(50),
+                            Forms\Components\Group::make()
+                                ->schema([
+                                    Forms\Components\TextInput::make('state.enquiries_max_characters')
+                                        ->label('Max Characters')
+                                        ->numeric()
+                                        ->required()
+                                        ->minValue(500)
+                                        ->maxValue(2500)
+                                        ->step(50),
+                                ->hidden(fn (Closure $get) => ! $get('state.enquiries_enabled') ),
                         ]),
                     Forms\Components\Tabs\Tab::make('Posts')
                         ->schema([
