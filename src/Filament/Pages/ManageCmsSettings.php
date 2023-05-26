@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Filament\Pages;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -40,6 +41,12 @@ class ManageCmsSettings extends Page
                                         ->label('Site Name')
                                         ->default(config('app.name'))
                                         ->required(),
+                                    CuratorPicker::make('header_image_id')
+                                        ->label('Default Header Image')
+                                        ->size('lg')
+                                        ->constrained(true)
+                                        ->preserveFilenames()
+                                        ->required()
                                 ])
                         ]),
                     Forms\Components\Tabs\Tab::make('Events')
