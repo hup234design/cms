@@ -26,6 +26,31 @@ class ManageCmsSettings extends Page
     public function mount(CmsSettings $settings)
     {
         $this->state = $settings->all();
+
+        $requiredKeys = [
+            "site_name",
+            "header_image_id",
+            "posts_slug",
+            "posts_title",
+            "secondary_footer_menu_id",
+            "primary_footer_menu_id",
+            "secondary_header_menu_id",
+            "primary_header_menu_id",
+            "contact_email",
+            "contact_address",
+            "contact_map",
+            "enquiries_enabled",
+            "enquiries_max_characters",
+            "events_enabled",
+            "events_slug",
+            "events_title"
+        ];
+
+        foreach ($requiredKeys as $key) {
+            if (!array_key_exists($key, $this->state)) {
+                $this->state[$key] = "";
+            }
+        }
     }
 
     protected function getFormSchema(): array
@@ -41,7 +66,7 @@ class ManageCmsSettings extends Page
                                         ->label('Site Name')
                                         ->default(config('app.name'))
                                         ->required(),
-                                    CuratorPicker::make('header_image_id')
+                                    CuratorPicker::make('state.header_image_id')
                                         ->label('Default Header Image')
                                         ->size('lg')
                                         ->constrained(true)
