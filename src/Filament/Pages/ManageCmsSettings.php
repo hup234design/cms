@@ -83,6 +83,7 @@ class ManageCmsSettings extends Page
                     Forms\Components\Tabs\Tab::make('Events')
                         ->schema([
                             Forms\Components\Toggle::make('state.events_enabled')
+                                ->reactive()
                                 ->label('Enabled'),
                             Forms\Components\Group::make()
                                 ->schema([
@@ -93,7 +94,7 @@ class ManageCmsSettings extends Page
                                     ->label('Slug')
                                     ->required(),
                                 ])
-                                ->hidden(fn (Closure $get) => $get('state.events_enabled') !== 1),
+                                ->hidden(fn (Closure $get) => ! $get('state.events_enabled')),
                             ]),
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
