@@ -24,6 +24,11 @@ class EnquiryBlockResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return cms_settings('enquiries_enabled');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
