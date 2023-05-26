@@ -94,7 +94,7 @@ class ManageCmsSettings extends Page
                                     ->label('Slug')
                                     ->required(),
                                 ])
-                                ->hidden(fn (Closure $get) => $get('state.events_enabled') != 1 ),
+                                ->hidden(fn (Closure $get) => intval($get('state.events_enabled')) == 0 ),
                             ]),
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
