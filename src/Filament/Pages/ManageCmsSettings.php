@@ -97,17 +97,22 @@ class ManageCmsSettings extends Page
                                         ->required(),
                                 ])
                                 ->hidden(fn (Closure $get) => intval($get('state.events_enabled')) == 0 ),
-                            ]),
+                        ]),
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
                             Forms\Components\Toggle::make('state.services_enabled')
+                                ->reactive()
                                 ->label('Enabled'),
-                            Forms\Components\TextInput::make('state.services_title')
-                                ->label('Title')
-                                ->required(),
-                            Forms\Components\TextInput::make('state.services_slug')
-                                ->label('Slug')
-                                ->required(),
+                            Forms\Components\Group::make()
+                                ->schema([
+                                    Forms\Components\TextInput::make('state.services_title')
+                                        ->label('Title')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('state.services_slug')
+                                        ->label('Slug')
+                                        ->required(),
+                                ])
+                                ->hidden(fn (Closure $get) => ! $get('state.services_enabled') ),
                         ]),
                     Forms\Components\Tabs\Tab::make('Testimonials')
                         ->schema([
