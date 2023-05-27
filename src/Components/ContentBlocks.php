@@ -22,7 +22,6 @@ class ContentBlocks extends Component
      */
     public function render(): View|Closure|string
     {
-        ray( $this->blocks );
         return view('cms::components.content-blocks', [
             'blocks' => $this->blocks
         ]);
