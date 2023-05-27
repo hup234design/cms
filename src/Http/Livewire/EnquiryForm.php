@@ -86,15 +86,19 @@ class EnquiryForm extends Component implements Forms\Contracts\HasForms
 
         $data = $this->form->getState();
 
-        $emailParts = explode('@', $data['email']);
-        $data['domain'] = end($emailParts);
         $data['ip_address'] = request()->ip();
+
+        ray($data);
 
         $honeypotData = $this->guessHoneypotDataProperty();
 
+        ray($honeypotData);
+
         try {
             app(SpamProtection::class)->check($honeypotData->toArray());
+            ray('not spam');
         } catch (SpamException) {
+            ray('spam');
             $data['spam'] = true;
         }
 
