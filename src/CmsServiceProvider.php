@@ -25,6 +25,7 @@ use Hup234design\Cms\Filament\Resources\GalleryResource;
 use Hup234design\Cms\Filament\Resources\IndexPageResource;
 use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
+use Hup234design\Cms\Http\Livewire\EnquiryForm;
 use Hup234design\Cms\Models\IndexPage;
 use Hup234design\Cms\Models\Page;
 use Illuminate\Support\Facades\Schema;
@@ -158,6 +159,6 @@ class CmsServiceProvider extends PluginServiceProvider
         Livewire::component('slider-block', SliderBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
 
-        // Livewire::component('enquiry-form', EnquiryForm::class);
+        Livewire::component('enquiry-form', EnquiryForm::class);
     }
 }
