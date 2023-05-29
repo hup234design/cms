@@ -42,7 +42,7 @@ class PageResource extends Resource
                     ->collapsible()
                     ->collapsed(true),
                 TiptapEditor::make('content')
-                    ->profile('custom')
+                    //->profile('custom')
                     ->maxContentWidth('full'),
                 Forms\Components\Builder::make('content_blocks')
                     ->blocks(

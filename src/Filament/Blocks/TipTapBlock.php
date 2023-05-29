@@ -15,7 +15,7 @@ class TipTapBlock extends Component
         return Forms\Components\Builder\Block::make('tip-tap-block')
             ->schema([
                 TiptapEditor::make('content')
-                    ->profile('custom')
+                    //->profile('custom')
                     ->maxContentWidth('full'),
             ]);
     }
