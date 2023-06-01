@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fd259411a0f14be771cab2d80fb1a1e",
+    "content-hash": "9cf16bb25184c9f05cc2b0fb789d2cb0",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5592,6 +5592,81 @@
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
+            "name": "ralphjsmit/laravel-filament-components",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralphjsmit/laravel-filament-components.git",
+                "reference": "0fa74b5bda69e7cee6aa387265bcacca10ee5cd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralphjsmit/laravel-filament-components/zipball/0fa74b5bda69e7cee6aa387265bcacca10ee5cd8",
+                "reference": "0fa74b5bda69e7cee6aa387265bcacca10ee5cd8",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.12",
+                "filament/forms": "^2.10",
+                "illuminate/contracts": "^8.73|^9.0|^10.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nesbot/carbon": "^2.66",
+                "nunomaduro/collision": "^5.10|^6.0|^7.0",
+                "orchestra/testbench": "^6.22|^7.0|^8.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpunit/phpunit": "^9.5|^10.0",
+                "spatie/laravel-ray": "^1.26",
+                "spatie/pest-plugin-test-time": "^1.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RalphJSmit\\Filament\\Components\\FilamentComponentsServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentComponents": "RalphJSmit\\Filament\\Components\\Facades\\FilamentComponents"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "RalphJSmit\\Filament\\Components\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph J. Smit",
+                    "email": "rjs@ralphjsmit.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A collection of reusable components for Filament.",
+            "homepage": "https://github.com/ralphjsmit/laravel-filament-components",
+            "keywords": [
+                "laravel",
+                "laravel-filament-components",
+                "ralphjsmit"
+            ],
+            "support": {
+                "issues": "https://github.com/ralphjsmit/laravel-filament-components/issues",
+                "source": "https://github.com/ralphjsmit/laravel-filament-components/tree/main"
+            },
+            "time": "2023-05-29T01:59:46+00:00"
+        },
+        {
             "name": "ralphjsmit/laravel-filament-seo",
             "version": "1.0.2",
             "source": {
@@ -9697,7 +9772,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pboivin/filament-peek": 20
+        "pboivin/filament-peek": 20,
+        "ralphjsmit/laravel-filament-components": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

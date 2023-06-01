@@ -25,6 +25,7 @@
         "filipfonal/filament-log-manager": "^1.2",
         "laravel/pint": "^1.2",
         "pboivin/filament-peek": "dev-main",
+        "ralphjsmit/laravel-filament-components": "dev-main",
         "ralphjsmit/laravel-filament-seo": "^1.0",
         "ryangjchandler/filament-navigation": "^0.5.0",
         "spatie/eloquent-sortable": "^4.0",
