@@ -18,6 +18,7 @@ use Hup234design\Cms\Models\Slider;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use RalphJSmit\Filament\Components\Forms\Sidebar;
 use RalphJSmit\Filament\Components\Forms\Timestamps;
+use RalphJSmit\Filament\SEO\SEO;
 
 class PageResource extends Resource
 {
@@ -39,17 +40,21 @@ class PageResource extends Resource
                 ->collapsible()
                 ->collapsed(true),
             TiptapEditor::make('content')
-                ->profile('simple')
+                ->profile('custom')
                 ->maxContentWidth('full')
                 ->columnSpanFull(),
-            Forms\Components\Builder::make('content_blocks')
-                ->label(false)
-                ->blocks(
-                    FormComponents::contentBlocks()
-                )
-                ->createItemButtonLabel('Add Content Block')
+            Forms\Components\Section::make('Content')
+                ->schema([
+                    Forms\Components\Builder::make('content_blocks')
+                        ->label(false)
+                        ->blocks(
+                            FormComponents::contentBlocks()
+                        )
+                        ->createItemButtonLabel('Add Content Block')
+                        ->collapsible()
+                ])
                 ->collapsible()
-                ->columnSpanFull()
+                ->collapsed(false)
         ], [
             Forms\Components\Section::make('General')
                 ->schema([
@@ -61,11 +66,15 @@ class PageResource extends Resource
                         titlePlaceholder: '',
                     ),
                     ...Timestamps::make(),
-                ]),
+                ])
+                ->collapsible()
+                ->collapsed(false),
             Forms\Components\Section::make('SEO')
                 ->schema([
-                    //
+                    SEO::make()
                 ])
+                ->collapsible()
+                ->collapsed(true)
         ]);
     }
 

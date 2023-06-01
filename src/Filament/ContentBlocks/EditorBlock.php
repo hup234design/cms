@@ -20,7 +20,7 @@ class EditorBlock extends ContentBlock
         return Block::make('editor-block')
             ->schema([
                 TiptapEditor::make('content')
-                    //->profile('custom')
+                    ->profile('custom')
                     ->maxContentWidth('full'),
             ]);
     }
