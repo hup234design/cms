@@ -27,30 +27,30 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                TitleWithSlugInput::make(
-                    fieldTitle: 'title', // The name of the field in your model that stores the title.
-                    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
-                ),
-                Forms\Components\Section::make('Header')
-                    ->schema([
-                        Forms\Components\Builder::make('header_blocks')
-                            ->blocks(
-                                FormComponents::headerBlocks()
-                            )
-                            ->collapsible()
-                    ])
-                    ->collapsible()
-                    ->collapsed(true),
-                TiptapEditor::make('content')
-                    //->profile('custom')
-                    ->maxContentWidth('full'),
-                Forms\Components\Builder::make('content_blocks')
-                    ->blocks(
-                        FormComponents::contentBlocks()
-                    )
-                    ->collapsible()
-            ])
-            ->columns(1);
+//                TitleWithSlugInput::make(
+//                    fieldTitle: 'title', // The name of the field in your model that stores the title.
+//                    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
+//                ),
+//                Forms\Components\Section::make('Header')
+//                    ->schema([
+//                        Forms\Components\Builder::make('header_blocks')
+//                            ->blocks(
+//                                FormComponents::headerBlocks()
+//                            )
+//                            ->collapsible()
+//                    ])
+//                    ->collapsible()
+//                    ->collapsed(true),
+//                TiptapEditor::make('content')
+//                    //->profile('custom')
+//                    ->maxContentWidth('full'),
+//                Forms\Components\Builder::make('content_blocks')
+//                    ->blocks(
+//                        FormComponents::contentBlocks()
+//                    )
+//                    ->collapsible()
+            ]);
+//            ->columns(1);
     }
 
     public static function table(Table $table): Table
