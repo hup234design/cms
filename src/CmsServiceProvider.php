@@ -6,7 +6,6 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
-use Hup234design\Cms\Commands\MakeCmsBlockCommand;
 use Hup234design\Cms\Commands\MakeCmsContentBlockCommand;
 use Hup234design\Cms\Components\AppFooter;
 use Hup234design\Cms\Components\AppHeader;
@@ -15,10 +14,10 @@ use Hup234design\Cms\Components\EventsLayout;
 use Hup234design\Cms\Components\HeaderBlocks;
 use Hup234design\Cms\Components\PostsLayout;
 use Hup234design\Cms\Components\SocialNetworks;
-use Hup234design\Cms\Filament\Blocks\EditorBlock;
-use Hup234design\Cms\Filament\Blocks\GalleryBlock;
-use Hup234design\Cms\Filament\Blocks\ImageBlock;
-use Hup234design\Cms\Filament\Blocks\SliderBlock;
+use Hup234design\Cms\Filament\ContentBlocks\EditorBlock;
+use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
+use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
+use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\DownloadResource;
 use Hup234design\Cms\Filament\Resources\EnquiryResource;
@@ -34,7 +33,6 @@ use Hup234design\Cms\Models\Page;
 use Illuminate\Support\Facades\Schema;
 use Livewire\Livewire;
 use Hup234design\Cms\Components\AppLayout;
-use Hup234design\Cms\Filament\Blocks\TipTapBlock;
 use Hup234design\Cms\Filament\Resources\PageResource;
 use Hup234design\Cms\Filament\Resources\PostCategoryResource;
 use Hup234design\Cms\Filament\Resources\PostResource;
@@ -160,11 +158,9 @@ class CmsServiceProvider extends PluginServiceProvider
         });
 
         // Register any livewire components
-        Livewire::component('tip-tap-block', TipTapBlock::class);
         Livewire::component('image-block', ImageBlock::class);
         Livewire::component('slider-block', SliderBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
-
         Livewire::component('editor-block', EditorBlock::class);
 
         Livewire::component('enquiry-form', EnquiryForm::class);

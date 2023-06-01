@@ -1,11 +1,10 @@
 <?php
 
-namespace Hup234design\Cms\Filament\Blocks;
+namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms\Components\Builder\Block;
-use Hup234design\Cms\ContentBlocks\ContentBlock;
 
 class GalleryBlock extends ContentBlock
 {

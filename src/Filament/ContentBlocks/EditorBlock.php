@@ -1,11 +1,10 @@
 <?php
 
-namespace Hup234design\Cms\Filament\Blocks;
+namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
 use FilamentTiptapEditor\TiptapEditor;
-use Hup234design\Cms\ContentBlocks\ContentBlock;
 
 class EditorBlock extends ContentBlock
 {

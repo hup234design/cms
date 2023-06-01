@@ -1,6 +1,6 @@
 <?php
 
-namespace Hup234design\Cms\ContentBlocks;
+namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
