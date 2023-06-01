@@ -4,35 +4,28 @@ namespace Hup234design\Cms\Filament\Blocks;
 
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
-use Filament\Forms;
-use Livewire\Component;
+use Filament\Forms\Components\Builder\Block;
+use Hup234design\Cms\ContentBlocks\ContentBlock;
 
-class ImageBlock extends Component
+class ImageBlock extends ContentBlock
 {
-    public $data;
+    public bool $core = true;
 
-    public static function schema(): Forms\Components\Builder\Block
+    public function setData($data): array {
+        $media = Media::find($data['image_id']);
+        return ['media' => $media];
+    }
+
+    public static function getBlockSchema(): Block
     {
-        return Forms\Components\Builder\Block::make('image-block')
+        return Block::make('image-block')
             ->schema([
                 CuratorPicker::make('image_id')
                     ->label('Image')
-                    ->buttonLabel('buttonLabel')
+                    //->buttonLabel('buttonLabel')
                     ->size('lg')
                     ->constrained(true)
                     ->preserveFilenames()
             ]);
-    }
-
-    public function mount($data) {
-        $this->data = $data;
-    }
-
-    public function render()
-    {
-        $media = Media::find($this->data['image_id']);
-        return view('cms::blocks.image-block', [
-            'media' => $media
-        ]);
     }
 }

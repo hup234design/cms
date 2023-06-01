@@ -6,6 +6,8 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
+use Hup234design\Cms\Commands\MakeCmsBlockCommand;
+use Hup234design\Cms\Commands\MakeCmsContentBlockCommand;
 use Hup234design\Cms\Components\AppFooter;
 use Hup234design\Cms\Components\AppHeader;
 use Hup234design\Cms\Components\ContentBlocks;
@@ -13,6 +15,7 @@ use Hup234design\Cms\Components\EventsLayout;
 use Hup234design\Cms\Components\HeaderBlocks;
 use Hup234design\Cms\Components\PostsLayout;
 use Hup234design\Cms\Components\SocialNetworks;
+use Hup234design\Cms\Filament\Blocks\EditorBlock;
 use Hup234design\Cms\Filament\Blocks\GalleryBlock;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
 use Hup234design\Cms\Filament\Blocks\SliderBlock;
@@ -63,6 +66,9 @@ class CmsServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
+            ->hasCommands([
+                MakeCmsContentBlockCommand::class,
+            ])
             ->hasConfigFile('cms')
             ->name('cms')
             ->hasViews('cms')
@@ -158,6 +164,8 @@ class CmsServiceProvider extends PluginServiceProvider
         Livewire::component('image-block', ImageBlock::class);
         Livewire::component('slider-block', SliderBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
+
+        Livewire::component('editor-block', EditorBlock::class);
 
         Livewire::component('enquiry-form', EnquiryForm::class);
     }

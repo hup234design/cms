@@ -2,33 +2,36 @@
 
 namespace Hup234design\Cms\Filament\Blocks;
 
-use Filament\Forms;
-use Hup234design\Cms\Models\Gallery;
-use Livewire\Component;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
+use Filament\Forms\Components\Builder\Block;
+use Hup234design\Cms\ContentBlocks\ContentBlock;
 
-class GalleryBlock extends Component
+class GalleryBlock extends ContentBlock
 {
-    public $data;
+    public bool $core = true;
 
-    public static function schema(): Forms\Components\Builder\Block
+    public function setData($data): array {
+        $gallery = [];
+        foreach($data['images'] ?? [] as $image_id) {
+            if( $media = Media::find($image_id)) {
+                $gallery[] = $media;
+            }
+        }
+        return ['gallery' => $gallery];
+    }
+
+    public static function getBlockSchema(): Block
     {
-        return Forms\Components\Builder\Block::make('gallery-block')
+        return Block::make('gallery-block')
             ->schema([
-                Forms\Components\Select::make('gallery_id')
-                    ->label('Gallery')
-                    ->options(Gallery::all()->pluck('title','id'))
+                CuratorPicker::make('images')
+                    ->label('Image')
+                    //->buttonLabel('buttonLabel')
+                    ->multiple()
+                    ->size('sm')
+//                    ->constrained(true)
+                    ->preserveFilenames()
             ]);
-    }
-
-    public function mount($data) {
-        $this->data = $data;
-    }
-
-    public function render()
-    {
-        $gallery = Gallery::find($this->data['gallery_id']);
-        return view('cms::blocks.gallery-block', [
-            'gallery' => $gallery
-        ]);
     }
 }

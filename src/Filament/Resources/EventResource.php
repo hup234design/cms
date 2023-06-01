@@ -25,7 +25,7 @@ class EventResource extends Resource
 
     protected static function shouldRegisterNavigation(): bool
     {
-        return cms_settings('events_enabled');
+        return cms_settings('events_enabled', false);
     }
 
     public static function form(Form $form): Form

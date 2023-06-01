@@ -3,6 +3,7 @@
 namespace Hup234design\Cms\Filament\Support;
 
 use Filament\Forms\Components;
+use Hup234design\Cms\Filament\Blocks\EditorBlock;
 use Hup234design\Cms\Filament\Blocks\GalleryBlock;
 use Hup234design\Cms\Filament\Blocks\ImageBlock;
 use Hup234design\Cms\Filament\Blocks\SliderBlock;
@@ -14,9 +15,10 @@ class FormComponents
     {
         return array_merge(
             [
-                TipTapBlock::schema(),
-                ImageBlock::schema(),
-                GalleryBlock::schema(),
+                EditorBlock::getBlockSchema(),
+                //TipTapBlock::schema(),
+                ImageBlock::getBlockSchema(),
+                GalleryBlock::getBlockSchema(),
             ],
             config('cms.content_blocks')
         );
