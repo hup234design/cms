@@ -2,9 +2,9 @@
     <x-cms-events-layout>
         <div class="prose max-w-none">
             <h1>
-                {{ $event->title }}
+                {{ $record->title }}
             </h1>
-            {!! $event->content !!}
+            {!! $record->content !!}
         </div>
     </x-cms-events-layout>
 </x-cms-app-layout>

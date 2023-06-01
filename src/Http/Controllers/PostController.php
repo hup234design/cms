@@ -19,9 +19,10 @@ class PostController extends Controller
         $post = Post::whereSlug($slug)->firstorFail();
 
         return view('cms::posts.post', [
-            'post' => $post
+            'record' => $post
         ]);
     }
+
 
     public function category($slug): View
     {

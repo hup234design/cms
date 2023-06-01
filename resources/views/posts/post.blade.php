@@ -2,9 +2,9 @@
     <x-cms-posts-layout>
         <div class="prose max-w-none">
             <h1>
-                {{ $post->title }}
+                {{ $record->title }}
             </h1>
-            {!! $post->content !!}
+            {!! $record->content !!}
         </div>
     </x-cms-posts-layout>
 </x-cms-app-layout>

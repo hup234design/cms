@@ -14,7 +14,7 @@ class PageController extends Controller
         $page = IndexPage::whereFor('home')->firstorFail();
 
         return view('cms::pages.home', [
-            'page' => $page
+            'record' => $page
         ]);
     }
 
@@ -23,7 +23,7 @@ class PageController extends Controller
         $page = Page::whereSlug($slug)->firstorFail();
 
         return view('cms::pages.page', [
-            'page' => $page
+            'record' => $page
         ]);
     }
 }

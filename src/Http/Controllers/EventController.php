@@ -23,7 +23,7 @@ class EventController extends Controller
         $event = Event::whereSlug($slug)->firstorFail();
 
         return view('cms::events.event', [
-            'event' => $event
+            'record' => $event
         ]);
     }
 

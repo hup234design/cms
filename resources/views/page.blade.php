@@ -10,14 +10,14 @@
     <div class="py-8 max-w-7xl mx-auto">
     <div class="prose max-w-none">
         <h1>
-            {{ $page->title }}
+            {{ $record->title }}
         </h1>
-        {!! $page->content !!}
+        {!! $record->content !!}
     </div>
 
 
 
-        <x-cms-content-blocks :blocks="$page->content_blocks" />
+        <x-cms-content-blocks :blocks="$record->content_blocks" />
 
     <div class="mt-8 text-sm text-gray-500">
         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
