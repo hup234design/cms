@@ -23,7 +23,7 @@ class HeaderBlocks extends Component
     public function render(): View|Closure|string
     {
         ray( $this->blocks );
-        return view('cms::components.header-blocks', [
+        return view('cms::partials.header-blocks', [
             'blocks' => $this->blocks
         ]);
     }

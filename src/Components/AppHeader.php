@@ -30,7 +30,7 @@ class AppHeader extends Component
         $primary_header   = Navigation::find(cms_settings('primary_header_menu_id'));
         $secondary_header = Navigation::find(cms_settings('secondary_header_menu_id'));
 
-        return view('cms::components.app-header', [
+        return view('cms::partials.app-header', [
             'primary_header'   => $primary_header   ? NavigationMenuLinks::format($primary_header->items)   : null,
             'secondary_header' => $secondary_header   ? NavigationMenuLinks::format($secondary_header->items)   : null,
         ]);

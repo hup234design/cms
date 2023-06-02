@@ -2,6 +2,8 @@
 
 namespace Hup234design\Cms;
 
+use Awcodes\Curator\CurationPreset;
+use Awcodes\Curator\Facades\Curator;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
@@ -156,6 +158,23 @@ class CmsServiceProvider extends PluginServiceProvider
 //                fn (): string => Blade::render('@livewire(\'media-image-browser\')'),
 //            );
         });
+
+        Curator::curationPresets([
+            CurationPreset::make('thumbnail')
+                ->label('Thumbnail')
+                ->width(400)
+                ->height(400)
+                ->format('webp')
+                ->quality(80),
+            CurationPreset::make('header')
+                ->label('Header')
+                ->width(1920)
+                ->height(640),
+            CurationPreset::make('featured')
+                ->label('Featured')
+                ->width(1440)
+                ->height(1080),
+        ]);
 
         // Register any livewire components
         Livewire::component('image-block', ImageBlock::class);

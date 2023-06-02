@@ -30,7 +30,7 @@ class SocialNetworks extends Component
     {
         $social_networks = SocialNetwork::active()->get();
 
-        return view('cms::components.social-networks', [
+        return view('cms::partials.social-networks', [
             'social_networks' => $social_networks
         ]);
     }

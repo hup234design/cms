@@ -22,7 +22,7 @@ class ContentBlocks extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('cms::components.content-blocks', [
+        return view('cms::partials.content-blocks', [
             'blocks' => $this->blocks
         ]);
     }

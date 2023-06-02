@@ -30,7 +30,7 @@ class AppFooter extends Component
         $primary_footer   = Navigation::find(cms_settings('primary_footer_menu_id'));
         $secondary_footer = Navigation::find(cms_settings('secondary_footer_menu_id'));
 
-        return view('cms::components.app-footer', [
+        return view('cms::partials.app-footer', [
             'primary_footer'   => $primary_footer   ? NavigationMenuLinks::format($primary_footer->items)   : null,
             'secondary_footer' => $secondary_footer   ? NavigationMenuLinks::format($secondary_footer->items)   : null,
         ]);
