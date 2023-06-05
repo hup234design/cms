@@ -15,7 +15,7 @@ class ImageBlock extends ContentBlock
     public bool $core = true;
 
     public function setData($data): array {
-        $media = Media::find($data['image_id']);
+        $media = Media::find($data['image_id'])?->first();
         $data['media'] = $media;
         return $data;
     }
@@ -25,6 +25,8 @@ class ImageBlock extends ContentBlock
         return Block::make('image-block')
             ->schema([
                 CuratorPicker::make('image_id')
+                    ->helperText('PLease select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.')
+                    ->multiple(false)
                     ->label('Image')
                     //->buttonLabel('buttonLabel')
                     ->size('lg')
