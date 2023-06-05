@@ -1,7 +1,5 @@
 @props(['media'=>null,'preset'=>''])
 
-{{ $preset }}
-
 @if($media)
     @if ($media->hasCuration($preset))
         <x-curator-curation
