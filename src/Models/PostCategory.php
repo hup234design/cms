@@ -36,6 +36,11 @@ class PostCategory extends Model implements Sortable
         return $this->hasMany(Post::class);
     }
 
+    public function published_posts() : HasMany
+    {
+        return $this->posts()->published();
+    }
+
     protected static function boot()
     {
         parent::boot();

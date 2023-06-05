@@ -1,8 +1,8 @@
-@isset($record->header_blocks)
-    <x-slot name="header">
-        <x-cms-header-blocks :blocks="$record->header_blocks" />
-    </x-slot>
-@endisset
+{{--@isset($record->header_blocks)--}}
+{{--    <x-slot name="header">--}}
+{{--        <x-cms-header-blocks :blocks="$record->header_blocks" />--}}
+{{--    </x-slot>--}}
+{{--@endisset--}}
 
 <div class="container">
     @isset($record->title)

@@ -11,6 +11,11 @@ class PostController extends Controller
 {
     public function index(): View
     {
+        $posts = Post::published()->paginate();
+
+        return view('cms::posts.index', [
+            'posts' => $posts,
+        ]);
         return view('cms::posts.index');
     }
 
@@ -28,8 +33,11 @@ class PostController extends Controller
     {
         $category = PostCategory::whereSlug($slug)->firstorFail();
 
+        $posts = $category->posts()->published()->paginate();
+
         return view('cms::posts.category', [
-            'category' => $category
+            'category' => $category,
+            'posts' => $posts,
         ]);
     }
 }

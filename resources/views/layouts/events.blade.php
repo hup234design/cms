@@ -1,4 +1,7 @@
 <div class="container">
+
+    @section('headingTitle', 'EVENTS')
+
     <div class="lg:flex lg:gap-16">
         <div class="lg:flex-1">
             {{ $slot }}
@@ -18,3 +21,4 @@
         </div>
     </div>
 </div>
+
