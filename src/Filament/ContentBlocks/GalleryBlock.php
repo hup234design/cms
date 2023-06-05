@@ -5,6 +5,8 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Textarea;
+use Hup234design\Cms\Filament\Support\FormComponents;
 
 class GalleryBlock extends ContentBlock
 {
@@ -17,16 +19,21 @@ class GalleryBlock extends ContentBlock
                 $gallery[] = $media;
             }
         }
-        return ['gallery' => $gallery];
+        $data['gallery'] = $gallery;
+        return $data;
     }
 
     public static function getBlockSchema(): Block
     {
         return Block::make('gallery-block')
+            ->label('Gallery')
             ->schema([
+                ...FormComponents::contentBlockTitle(),
+                Textarea::make('description')
+                    ->rows(5),
                 CuratorPicker::make('images')
-                    ->label('Image')
-                    //->buttonLabel('buttonLabel')
+                    ->label('Images')
+                    ->buttonLabel('Select Images')
                     ->multiple()
                     ->size('sm')
 //                    ->constrained(true)

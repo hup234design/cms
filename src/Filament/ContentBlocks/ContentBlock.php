@@ -4,6 +4,7 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
+use Hup234design\Cms\Filament\Support\FormComponents;
 use Livewire\Component;
 
 class ContentBlock extends Component
@@ -15,7 +16,7 @@ class ContentBlock extends Component
     public static function getBlockSchema(): Block {
         return Block::make('content-block')
             ->schema([
-                //
+                ...FormComponents::contentBlockDefaults()
             ]);
     }
 
