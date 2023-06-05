@@ -6,6 +6,7 @@ use Hup234design\Cms\Traits\HasSlider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\EloquentSortable\Sortable;
@@ -30,6 +31,11 @@ class IndexPage extends Model implements Sortable
         'header_blocks' => 'array',
         'visible' => 'boolean',
     ];
+
+    public function slider() : BelongsTo
+    {
+        return $this->belongsTo(Slider::class);
+    }
 
     public function getDynamicSEOData(): SEOData
     {

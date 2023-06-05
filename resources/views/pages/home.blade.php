@@ -1,6 +1,13 @@
 <x-cms-app-layout>
 
-    @section('headingTitle', $record->title)
+    @if( $record->slider ?? null )
+        @section('slider')
+            @parent
+            <x-cms::slider :slider="$record->slider" />
+        @endsection
+    @else
+        @section('headingTitle', $record->title)
+    @endif
 
     <div class="container">
         <div class="prose max-w-none">

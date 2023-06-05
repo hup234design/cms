@@ -15,7 +15,7 @@ class Slider extends Model
 
     public function slides() : HasMany
     {
-        return $this->hasMany(Slide::class);
+        return $this->hasMany(Slide::class)->with('media');
     }
 
     /**

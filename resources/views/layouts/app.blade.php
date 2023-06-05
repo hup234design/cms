@@ -12,6 +12,9 @@
 <x-cms-app-header />
 
 {{-- HEADING SECTION --}}
+@hasSection('slider')
+    @yield('slider')
+@else
     <div class="relative py-12 bg-gray-300 text-center uppercase text-2xl space-y-6">
         @section('heading')
             <p class="block text-4xl">
@@ -24,6 +27,10 @@
             @endif
         @show
     </div>
+@endif
+
+
+
 
 
 {{--    --}}{{--    )--}}

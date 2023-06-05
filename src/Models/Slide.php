@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Models;
 
+use Awcodes\Curator\Models\Media;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,11 @@ class Slide extends Model implements Sortable
     public function slider() : BelongsTo
     {
         return $this->belongsTo(Slider::class);
+    }
+
+    public function media() : BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'image_id');
     }
 
     protected static function boot()
