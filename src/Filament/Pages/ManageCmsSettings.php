@@ -12,13 +12,10 @@ use RyanChandler\FilamentNavigation\Filament\Fields\NavigationSelect;
 
 class ManageCmsSettings extends Page
 {
-    protected static ?string $navigationGroup = 'Settings';
-
-    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
-    protected static ?string $title = 'Settings';
+    protected static ?string $title = 'Site Settings';
 
     protected static string $view = 'cms::filament.pages.cms-settings';
 

@@ -4,6 +4,7 @@ namespace Hup234design\Cms;
 
 use Awcodes\Curator\CurationPreset;
 use Awcodes\Curator\Facades\Curator;
+use Awcodes\Curator\Resources\MediaResource;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
@@ -25,7 +26,6 @@ use Hup234design\Cms\Filament\Resources\DownloadResource;
 use Hup234design\Cms\Filament\Resources\EnquiryResource;
 use Hup234design\Cms\Filament\Resources\EventCategoryResource;
 use Hup234design\Cms\Filament\Resources\EventResource;
-use Hup234design\Cms\Filament\Resources\GalleryResource;
 use Hup234design\Cms\Filament\Resources\IndexPageResource;
 use Hup234design\Cms\Filament\Resources\SliderResource;
 use Hup234design\Cms\Filament\Resources\SocialNetworkResource;
@@ -54,7 +54,6 @@ class CmsServiceProvider extends PluginServiceProvider
         EventCategoryResource::class,
         EventResource::class,
         SliderResource::class,
-        GalleryResource::class,
         DownloadResource::class,
         EnquiryResource::class,
     ];
@@ -133,14 +132,13 @@ class CmsServiceProvider extends PluginServiceProvider
             Filament::registerNavigationGroups([
                 'Post Management',
                 'Page Management',
-//                'Content Management',
-//                'Event Management',
-//                'Media Management',
+                'Content Management',
+                'Event Management',
 //                'Enquiries',
                 'Settings',
             ]);
 
-            NavigationResource::navigationGroup("Settings");
+            NavigationResource::navigationGroup("Content Management");
             NavigationResource::navigationSort(1);
 
             Filament::registerUserMenuItems([
@@ -174,7 +172,8 @@ class CmsServiceProvider extends PluginServiceProvider
                 ->label('Featured')
                 ->width(1440)
                 ->height(1080),
-        ]);
+        ])
+        ->navigationGroup('Content Management');
 
         // Register any livewire components
         Livewire::component('image-block', ImageBlock::class);

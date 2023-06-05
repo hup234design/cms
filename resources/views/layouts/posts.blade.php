@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container pl-0">
     <div class="lg:flex lg:gap-16">
         <div class="lg:flex-1">
             {{ $slot }}

@@ -31,29 +31,26 @@ class ImageBlock extends ContentBlock
 //                    ->constrained(true)
                     ->preserveFilenames()
                     ->reactive(),
-                Group::make()
-                    ->schema([
-
                         Select::make('preset')
                             ->options(function(callable $get) {
-                                $options = [];
+                                $options = ['original' => 'Original'];
 
                                 if( $media = $get('image_id') ) {
-                                    foreach ( reset($media)['curations'] ?? [] as $curation ) {
-                                        $key = $curation['curation']['key'];
-                                        $options[ $key ] = 'Curation: ' . $key;
+                                    if( $curations = $media['curations'] ?? false) {
+                                        foreach (reset($curations) as $curation) {
+                                            $key = $curation['curation']['key'];
+                                            $options[$key] = 'Curation: ' . $key;
+                                        }
                                     }
-
-                                    ray(reset($media)['curations']);
                                 }
-
-                                foreach (Curator::getCurationPresets() as $preset) {
-                                    $options[$preset['key']] = 'Preset: ' . $preset['name'];
+                                if ($presets = Curator::getCurationPresets()) {
+                                    foreach ($presets as $preset) {
+                                        $options[$preset['key']] = 'Preset: ' . $preset['name'];
+                                    }
                                 }
 
                                 return $options;
                             }),
-                    ])
             ])
             ->columns(2);
     }
