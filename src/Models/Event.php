@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Models;
 
+use Awcodes\Curator\Models\Media;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,16 @@ class Event extends Model
     public function category() : BelongsTo
     {
         return $this->belongsTo(EventCategory::class, 'event_category_id');
+    }
+
+    public function featured_image() : BelongsTo
+    {
+        return $this->belongsTo(Media::class);
+    }
+
+    public function seo_image() : BelongsTo
+    {
+        return $this->belongsTo(Media::class);
     }
 
     public function scopePublished($query)
