@@ -11,6 +11,7 @@
     </div>
 
     <div class="mt-8 space-y-8 lg:flex lg:space-y-0 lg:gap-8">
+
         @foreach($data['latest_posts'] as $latest_post)
             <div class="border group lg:flex-1">
                 <div class="w-full h-64 overflow-hidden">
