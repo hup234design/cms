@@ -17,41 +17,17 @@
 @else
     <div class="relative py-12 bg-gray-300 text-center uppercase text-2xl space-y-6">
         @section('heading')
-            <p class="block text-4xl">
+            <p class="block text-4xl font-bold text-white">
                 @yield('headingTitle')
             </p>
             @hasSection('headingSubtitle')
-                <p class="block text-2xl">
+                <p class="block text-2xl font-semibold text-white">
                     @yield('headingSubtitle')
                 </p>
             @endif
         @show
     </div>
 @endif
-
-
-
-
-
-{{--    --}}{{--    )--}}
-{{--    --}}{{--    @hasSection('header-image')--}}
-{{--    --}}{{--        <div class="absolute inset-0 bg-black">--}}
-{{--    --}}{{--            <img src="@yield('header-image')" class="object-cover object-center h-full w-full opacity-50" />--}}
-{{--    --}}{{--        </div>--}}
-{{--    --}}{{--    @endif--}}
-
-{{--    --}}{{--        <div class="relative">--}}
-{{--    @section('heading')--}}
-{{--        <p class="block text-4xl">--}}
-{{--            @yield('headingTitle')--}}
-{{--        </p>--}}
-{{--        @hasSection('headingSubtitle')--}}
-{{--            <p class="block text-2xl">--}}
-{{--                @yield('headingSubtitle')--}}
-{{--            </p>--}}
-{{--        @endif--}}
-{{--    @show--}}
-{{--</div>--}}
 
 @isset($header)
     {{ $header }}
