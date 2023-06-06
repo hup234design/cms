@@ -9,10 +9,6 @@
         @section('headingTitle', $record->title)
     @endif
 
-    <div class="container">
-
-        @include('cms::components.content')
-
-    </div>
+    @include('cms::components.content')
 
 </x-cms-app-layout>
