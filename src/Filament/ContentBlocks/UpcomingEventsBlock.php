@@ -4,26 +4,26 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
-use Hup234design\Cms\Models\Post;
+use Hup234design\Cms\Models\Event;
 
-class LatestPostsBlock extends ContentBlock
+class UpcomingEventsBlock extends ContentBlock
 {
     public bool $core = true;
 
     public function setData($data): array
     {
-        $data['latest_posts'] = Post::with('featured_image')->published()->get()->take( $data['posts_count'] ?? 3 );
+        $data['upcoming_events'] = Event::upcoming()->published()->get()->take( $data['events_count'] ?? 3 );
         return parent::setData($data);
     }
 
     public static function getBlockSchema(): Block
     {
-        return Block::make('latest-posts-block')
-            ->label('Latest Posts')
+        return Block::make('upcoming-events-block')
+            ->label('Upcoming Events')
             ->schema([
                 Forms\Components\TextInput::make('heading'),
                 Forms\Components\TextInput::make('subheading'),
-                Forms\Components\Select::make('posts_count')
+                Forms\Components\Select::make('events_count')
                     ->options([
                         2 => 2,
                         3 => 3,

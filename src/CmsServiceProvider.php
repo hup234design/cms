@@ -22,6 +22,7 @@ use Hup234design\Cms\Filament\ContentBlocks\EditorImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
 use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\LatestPostsBlock;
+use Hup234design\Cms\Filament\ContentBlocks\UpcomingEventsBlock;
 use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\DownloadResource;
@@ -184,6 +185,7 @@ class CmsServiceProvider extends PluginServiceProvider
         Livewire::component('editor-block', EditorBlock::class);
         Livewire::component('editor-image-block', EditorImageBlock::class);
         Livewire::component('latest-posts-block', LatestPostsBlock::class);
+        Livewire::component('upcoming-events-block', UpcomingEventsBlock::class);
 
         Livewire::component('enquiry-form', EnquiryForm::class);
     }

@@ -18,6 +18,7 @@ class SliderBlock extends ContentBlock
     public static function getBlockSchema(): Block
     {
         return Block::make('slider-block')
+            ->label('Slider')
             ->schema([
                 Forms\Components\Select::make('slider_id')
                     ->options(Slider::pluck('title','id'))

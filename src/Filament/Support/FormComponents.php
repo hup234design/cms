@@ -8,6 +8,7 @@ use Hup234design\Cms\Filament\ContentBlocks\EditorImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
 use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\LatestPostsBlock;
+use Hup234design\Cms\Filament\ContentBlocks\UpcomingEventsBlock;
 use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
 
 class FormComponents
@@ -49,6 +50,7 @@ class FormComponents
                 ImageBlock::getBlockSchema(),
                 GalleryBlock::getBlockSchema(),
                 LatestPostsBlock::getBlockSchema(),
+                UpcomingEventsBlock::getBlockSchema(),
             ],
             config('cms.content_blocks')
         );
