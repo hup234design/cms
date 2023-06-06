@@ -42,17 +42,15 @@ class FormComponents
 
     public static function contentBlocks(): array
     {
-        return array_merge(
-            [
+        return [
                 EditorBlock::schema(),
                 EditorImageBlock::schema(),
                 ImageBlock::schema(),
                 GalleryBlock::schema(),
                 LatestPostsBlock::schema(),
                 UpcomingEventsBlock::schema(),
-            ],
-            config('cms.content_blocks')
-        );
+                ...config('cms.content_blocks')
+        ];
     }
 
     public static function headerBlocks(): array
