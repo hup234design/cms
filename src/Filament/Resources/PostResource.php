@@ -57,9 +57,6 @@ class PostResource extends Resource
                     ->required(),
                 Forms\Components\Toggle::make('published')
                     ->default(false),
-                TiptapEditor::make('content')
-                    ->profile('custom')
-                    ->maxContentWidth('full'),
                 Forms\Components\Builder::make('content_blocks')
                     ->blocks(
                         FormComponents::contentBlocks()
