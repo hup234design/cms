@@ -5,10 +5,10 @@
     @if(count($data['gallery'] ?? []) > 0)
         <div class="container">
 
-                @if( $data['include_heading'] && ($data['heading'] ?? '') )
+            @if( ($data['include_heading'] ?? false) && ($data['heading'] ?? false) && ($data['level'] ?? false) )
                 <div class="prose max-w-none">
                     <{{ $data['level'] }}>{{ $data['heading'] }}</{{ $data['level'] }}>
-                    @if( $description = trim($data['description']) )
+                    @if( $description = trim($data['description'] ?? '' ) )
                         <p>{{ nl2br($description) }}</p>
                     @endif
                 </div>

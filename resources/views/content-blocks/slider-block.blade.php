@@ -2,7 +2,7 @@
 
 <div class="w-full">
     <div class="">
-        @if($data['slider'])
+        @if($data['slider'] ?? false)
             <div x-data="{swiper: null}"
                  x-init="swiper = new Swiper($refs.container, {
                 autoplay: {

@@ -1,7 +1,7 @@
 @aware(['record'])
 
 <div>
-    @if($data['media'])
+    @if($data['media'] ?? false)
         <div class="container">
             <div @class([
                 'mx-auto',
