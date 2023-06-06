@@ -2,6 +2,7 @@
 
 namespace Hup234design\Cms\Models;
 
+use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,16 @@ class Post extends Model
     public function category() : BelongsTo
     {
         return $this->belongsTo(PostCategory::class, 'post_category_id');
+    }
+
+    public function featured_image() : BelongsTo
+    {
+        return $this->belongsTo(Media::class);
+    }
+
+    public function seo_image() : BelongsTo
+    {
+        return $this->belongsTo(Media::class);
     }
 
     public function scopePublished($query)

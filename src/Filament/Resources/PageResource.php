@@ -4,6 +4,7 @@ namespace Hup234design\Cms\Filament\Resources;
 
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Camya\Filament\Forms\Components\TitleWithSlugInput;
+use Filament\Forms\Components\Placeholder;
 use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PageResource\Pages;
 use Hup234design\Cms\Filament\Resources\PageResource\RelationManagers;
@@ -18,6 +19,7 @@ use Hup234design\Cms\Models\Slider;
 use Illuminate\Contracts\Database\ModelIdentifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 use Pboivin\FilamentPeek\Pages\Actions\PreviewAction;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 use RalphJSmit\Filament\Components\Forms\Sidebar;
@@ -46,19 +48,7 @@ class PageResource extends Resource
                         ->collapsible()
                 ])
                 ->collapsible()
-                ->collapsed(true),
-            Forms\Components\Section::make('Content')
-                ->schema([
-                    Forms\Components\Builder::make('content_blocks')
-                        ->label(false)
-                        ->blocks(
-                            FormComponents::contentBlocks()
-                        )
-                        ->createItemButtonLabel('Add Content Block')
-                        ->collapsible()
-                ])
-                ->collapsible()
-                ->collapsed(false)
+                ->collapsed(true)
         ], [
             Forms\Components\Section::make('General')
                 ->schema([

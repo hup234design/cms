@@ -2,8 +2,11 @@
 
 namespace Hup234design\Cms\Filament\Resources;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Facades\Curator;
 use Camya\Filament\Forms\Components\TitleWithSlugInput;
 use Carbon\Carbon;
+use Filament\Forms\Components\Placeholder;
 use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Filament\Resources\PostResource\Pages;
 use Hup234design\Cms\Filament\Resources\PostResource\RelationManagers;
@@ -16,6 +19,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 use RalphJSmit\Filament\Components\Forms\Sidebar;
 use RalphJSmit\Filament\Components\Forms\Timestamps;
 use RalphJSmit\Filament\SEO\SEO;
@@ -79,9 +83,36 @@ class PostResource extends Resource
                 ])
                 ->collapsible()
                 ->collapsed(false),
+            Forms\Components\Section::make('Featured Image')
+                ->schema([
+                    Placeholder::make('Note')
+                        ->label(false)
+                        ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>')),
+                    CuratorPicker::make('featured_image_id')
+                        ->label(false)
+                        ->multiple(false)
+                        ->buttonLabel('Select Image')
+                        ->size('md')
+                        ->constrained(true)
+                        ->preserveFilenames()
+                        ->reactive(),
+                ])
+                ->collapsible()
+                ->collapsed(false),
             Forms\Components\Section::make('SEO')
                 ->schema([
-                    SEO::make()
+                    SEO::make(),
+                    Placeholder::make('Note')
+                        ->label(false)
+                        ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>')),
+                    CuratorPicker::make('seo_image_id')
+                        ->label(false)
+                        ->multiple(false)
+                        ->buttonLabel('Select Image')
+                        ->size('md')
+                        ->constrained(true)
+                        ->preserveFilenames()
+                        ->reactive(),
                 ])
                 ->collapsible()
                 ->collapsed(true)
