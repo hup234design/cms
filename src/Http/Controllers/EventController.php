@@ -11,10 +11,8 @@ class EventController extends Controller
 {
     public function index(): View
     {
-        $events = Event::published()->upcoming()->paginate();
-
         return view('cms::events.index', [
-            'events' => $events,
+            'events' => Event::published()->upcoming()->paginate(),
         ]);
     }
 

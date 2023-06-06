@@ -12,9 +12,8 @@ class PostController extends Controller
     public function index(): View
     {
         return view('cms::posts.index', [
-            'posts' => $posts,
+            'posts' => Post::published()->paginate(),
         ]);
-        return view('cms::posts.index');
     }
 
     public function post($slug): View
