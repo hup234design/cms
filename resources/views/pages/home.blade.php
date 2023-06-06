@@ -10,10 +10,9 @@
     @endif
 
     <div class="container">
-        <div class="prose max-w-none">
-            <h1>
-                HOME PAGE
-            </h1>
-        </div>
+
+        @include('cms::components.content')
+
     </div>
+
 </x-cms-app-layout>

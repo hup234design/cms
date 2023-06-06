@@ -21,6 +21,7 @@ use Hup234design\Cms\Filament\ContentBlocks\EditorBlock;
 use Hup234design\Cms\Filament\ContentBlocks\EditorImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
 use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
+use Hup234design\Cms\Filament\ContentBlocks\LatestPostsBlock;
 use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
 use Hup234design\Cms\Filament\Pages\ManageCmsSettings;
 use Hup234design\Cms\Filament\Resources\DownloadResource;
@@ -162,7 +163,7 @@ class CmsServiceProvider extends PluginServiceProvider
             CurationPreset::make('thumbnail')
                 ->label('Thumbnail')
                 ->width(400)
-                ->height(400)
+                ->height(300)
                 ->format('webp')
                 ->quality(80),
             CurationPreset::make('header')
@@ -182,6 +183,7 @@ class CmsServiceProvider extends PluginServiceProvider
         Livewire::component('gallery-block', GalleryBlock::class);
         Livewire::component('editor-block', EditorBlock::class);
         Livewire::component('editor-image-block', EditorImageBlock::class);
+        Livewire::component('latest-posts-block', LatestPostsBlock::class);
 
         Livewire::component('enquiry-form', EnquiryForm::class);
     }
