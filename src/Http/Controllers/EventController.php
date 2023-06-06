@@ -30,12 +30,11 @@ class EventController extends Controller
     public function category($slug): View
     {
         $category = EventCategory::whereSlug($slug)->firstorFail();
-
         $events = $category->events()->published()->upcoming()->paginate();
 
         return view('cms::events.category', [
             'category' => $category,
-            'events' => 'events'
+            'events' => $events,
         ]);
     }
 }
