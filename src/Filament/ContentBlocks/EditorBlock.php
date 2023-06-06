@@ -14,6 +14,7 @@ class EditorBlock extends ContentBlock
     public static function getBlockSchema(): Block
     {
         return Block::make('editor-block')
+            ->label('Editor')
             ->schema([
                 ...FormComponents::contentBlockTitle(),
                 TiptapEditor::make('content')

@@ -5,14 +5,15 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Facades\Curator;
 use Awcodes\Curator\Models\Media;
+use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\ViewField;
+use FilamentTiptapEditor\TiptapEditor;
+use Hup234design\Cms\Filament\Support\FormComponents;
 use Illuminate\Support\HtmlString;
 
-class ImageBlock extends ContentBlock
+class EditorImageBlock extends ContentBlock
 {
     public bool $core = true;
 
@@ -24,9 +25,13 @@ class ImageBlock extends ContentBlock
 
     public static function getBlockSchema(): Block
     {
-        return Block::make('image-block')
-            ->label('Image')
+        return Block::make('editor-image-block')
+            ->label('Editor + Image')
             ->schema([
+                ...FormComponents::contentBlockTitle(),
+                TiptapEditor::make('content')
+                    ->profile('custom')
+                    ->maxContentWidth('full'),
                 Placeholder::make('Note')
                     ->label(false)
                     ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
@@ -60,15 +65,6 @@ class ImageBlock extends ContentBlock
 
                         return $options;
                     }),
-                Select::make('width')
-                    ->options([
-                        'full' => 'Full',
-                        '3/4'  => '3/4',
-                        '2/3'  => '2/3',
-                        '1/2'  => '1/2'
-                    ])
-
-            ])
-            ->columns(2);
+            ]);
     }
 }

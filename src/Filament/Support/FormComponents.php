@@ -4,6 +4,7 @@ namespace Hup234design\Cms\Filament\Support;
 
 use Filament\Forms;
 use Hup234design\Cms\Filament\ContentBlocks\EditorBlock;
+use Hup234design\Cms\Filament\ContentBlocks\EditorImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
 use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
@@ -43,6 +44,7 @@ class FormComponents
         return array_merge(
             [
                 EditorBlock::getBlockSchema(),
+                EditorImageBlock::getBlockSchema(),
                 ImageBlock::getBlockSchema(),
                 GalleryBlock::getBlockSchema(),
             ],

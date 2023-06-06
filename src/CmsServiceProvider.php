@@ -18,6 +18,7 @@ use Hup234design\Cms\Components\HeaderBlocks;
 use Hup234design\Cms\Components\PostsLayout;
 use Hup234design\Cms\Components\SocialNetworks;
 use Hup234design\Cms\Filament\ContentBlocks\EditorBlock;
+use Hup234design\Cms\Filament\ContentBlocks\EditorImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\GalleryBlock;
 use Hup234design\Cms\Filament\ContentBlocks\ImageBlock;
 use Hup234design\Cms\Filament\ContentBlocks\SliderBlock;
@@ -180,6 +181,7 @@ class CmsServiceProvider extends PluginServiceProvider
         Livewire::component('slider-block', SliderBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
         Livewire::component('editor-block', EditorBlock::class);
+        Livewire::component('editor-image-block', EditorImageBlock::class);
 
         Livewire::component('enquiry-form', EnquiryForm::class);
     }
