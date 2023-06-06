@@ -24,7 +24,7 @@ class EventsLayout extends Component
     public function render():  View|Closure|string
     {
         return view('cms::layouts.events', [
-            'upcoming_events' => Event::published()->upcoming()->get()->take(5),,
+            'upcoming_events' => Event::published()->upcoming()->get()->take(5),
             'categories' => EventCategory::withCount('published_upcoming_events')->get()
         ]);
     }
