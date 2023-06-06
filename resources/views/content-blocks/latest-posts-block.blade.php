@@ -23,7 +23,7 @@
                 <div class="mt-2 prose max-w-none p-4">
                     <h3>{{ $latest_post->title }}</h3>
                     <p class="text-sm">
-                        {{ $latest_post->published_at->format('l jS F Y') }}
+                        {{ $latest_post->publish_at->format('l jS F Y') }}
                     </p>
                     <p class="line-clamp-3">
                         {{ $latest_post->summary }} }}
