@@ -11,7 +11,7 @@ class EventController extends Controller
 {
     public function index(): View
     {
-        $events = Event::upcoming()->paginate();
+        $events = Event::published()->upcoming()->paginate();
 
         return view('cms::events.index', [
             'events' => $events,
@@ -31,8 +31,11 @@ class EventController extends Controller
     {
         $category = EventCategory::whereSlug($slug)->firstorFail();
 
+        $events = $category->events()->published()->upcoming()->paginate();
+
         return view('cms::events.category', [
-            'category' => $category
+            'category' => $category,
+            'events' => 'events'
         ]);
     }
 }

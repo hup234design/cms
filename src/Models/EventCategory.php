@@ -36,6 +36,11 @@ class EventCategory extends Model implements Sortable
         return $this->hasMany(Event::class);
     }
 
+    public function published_upcoming_events() : HasMany
+    {
+        return $this->events()->published()->upcoming();
+    }
+
     protected static function boot()
     {
         parent::boot();

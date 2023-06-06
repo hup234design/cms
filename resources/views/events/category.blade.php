@@ -1,9 +1,3 @@
-<x-cms-app-layout>
-
+<x-cms-events-layout>
     @section('headingSubTitle', $category->title)
-
-    <x-cms-events-layout>
-
-    </x-cms-events-layout>
-
-</x-cms-app-layout>
+</x-cms-events-layout>

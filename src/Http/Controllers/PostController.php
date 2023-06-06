@@ -11,8 +11,6 @@ class PostController extends Controller
 {
     public function index(): View
     {
-        $posts = Post::published()->paginate();
-
         return view('cms::posts.index', [
             'posts' => $posts,
         ]);
