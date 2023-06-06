@@ -48,7 +48,19 @@ class PageResource extends Resource
                         ->collapsible()
                 ])
                 ->collapsible()
-                ->collapsed(true)
+                ->collapsed(true),
+            Forms\Components\Section::make('Content')
+                ->schema([
+                    Forms\Components\Builder::make('content_blocks')
+                        ->label(false)
+                        ->blocks(
+                            FormComponents::contentBlocks()
+                        )
+                        ->createItemButtonLabel('Add Content Block')
+                        ->collapsible()
+                ])
+                ->collapsible()
+                ->collapsed(false)
         ], [
             Forms\Components\Section::make('General')
                 ->schema([
