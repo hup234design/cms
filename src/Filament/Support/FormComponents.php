@@ -37,7 +37,6 @@ class FormComponents
                 ])
                 ->columns(4)
             ->hidden(fn (\Closure $get) => !$get('include_heading'))
-
         ];
     }
 
@@ -45,7 +44,7 @@ class FormComponents
     {
         return array_merge(
             [
-                EditorBlock::getBlockSchema(),
+                EditorBlock::schema(),
                 EditorImageBlock::getBlockSchema(),
                 ImageBlock::getBlockSchema(),
                 GalleryBlock::getBlockSchema(),

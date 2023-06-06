@@ -1,4 +1,7 @@
-@aware(['record'])
+
+
+<x-cms::block-wrapper>
+
 
 @if ( trim($data['content']) != "")
     <div class="container">
@@ -12,3 +15,5 @@
         </div>
     </div>
 @endif
+
+</x-cms::block-wrapper>
