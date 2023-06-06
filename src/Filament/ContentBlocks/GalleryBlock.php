@@ -6,11 +6,22 @@ use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Textarea;
+use Hup234design\Cms\Contracts\ContentBlockTemplate;
 use Hup234design\Cms\Filament\Support\FormComponents;
 
-class GalleryBlock extends ContentBlock
+class GalleryBlock extends ContentBlock implements ContentBlockTemplate
 {
     public bool $core = true;
+
+    public static function getBlockName(): string
+    {
+        return "gallery-block";
+    }
+
+    public static function getBlockLabel(): string
+    {
+        return "Gallery";
+    }
 
     public function setData($data): array {
         $gallery = [];
@@ -23,13 +34,10 @@ class GalleryBlock extends ContentBlock
         return $data;
     }
 
-    public static function getBlockSchema(): Block
+    public static function getBlockFields(): array
     {
-        return Block::make('gallery-block')
-            ->label('Gallery')
-            ->schema([
-                ...FormComponents::contentBlockTitle(),
-                Textarea::make('description')
+        return [
+            Textarea::make('description')
                     ->rows(5),
                 CuratorPicker::make('images')
                     ->label('Images')
@@ -38,6 +46,6 @@ class GalleryBlock extends ContentBlock
                     ->size('sm')
 //                    ->constrained(true)
                     ->preserveFilenames()
-            ]);
+            ];
     }
 }

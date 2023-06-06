@@ -8,7 +8,7 @@ use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Contracts\ContentBlockTemplate;
 use Hup234design\Cms\Filament\Support\FormComponents;
 
-class EditorBlock extends ContentBlock
+class EditorBlock extends ContentBlock implements ContentBlockTemplate
 {
     public bool $core = true;
 

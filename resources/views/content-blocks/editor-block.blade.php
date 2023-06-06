@@ -1,8 +1,4 @@
 
-
-<x-cms::block-wrapper>
-
-
 @if ( trim($data['content']) != "")
     <div class="container">
         <div class="prose max-w-none">
@@ -15,5 +11,3 @@
         </div>
     </div>
 @endif
-
-</x-cms::block-wrapper>

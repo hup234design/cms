@@ -4,11 +4,22 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
+use Hup234design\Cms\Contracts\ContentBlockTemplate;
 use Hup234design\Cms\Models\Post;
 
-class LatestPostsBlock extends ContentBlock
+class LatestPostsBlock extends ContentBlock implements ContentBlockTemplate
 {
     public bool $core = true;
+
+    public static function getBlockName(): string
+    {
+        return "latest-posts-block";
+    }
+
+    public static function getBlockLabel(): string
+    {
+        return "Latest Posts";
+    }
 
     public function setData($data): array
     {
@@ -16,12 +27,10 @@ class LatestPostsBlock extends ContentBlock
         return parent::setData($data);
     }
 
-    public static function getBlockSchema(): Block
+    public static function getBlockFields(): array
     {
-        return Block::make('latest-posts-block')
-            ->label('Latest Posts')
-            ->schema([
-                Forms\Components\TextInput::make('heading'),
+        return [
+            Forms\Components\TextInput::make('heading'),
                 Forms\Components\TextInput::make('subheading'),
                 Forms\Components\Select::make('posts_count')
                     ->options([
@@ -31,6 +40,6 @@ class LatestPostsBlock extends ContentBlock
                     ])
                     ->default(3)
                     ->required()
-            ]);
+            ];
     }
 }

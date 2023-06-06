@@ -4,11 +4,22 @@ namespace Hup234design\Cms\Filament\ContentBlocks;
 
 use Filament\Forms;
 use Filament\Forms\Components\Builder\Block;
+use Hup234design\Cms\Contracts\ContentBlockTemplate;
 use Hup234design\Cms\Models\Event;
 
-class UpcomingEventsBlock extends ContentBlock
+class UpcomingEventsBlock extends ContentBlock implements ContentBlockTemplate
 {
     public bool $core = true;
+
+    public static function getBlockName(): string
+    {
+        return "upcoming-events-block";
+    }
+
+    public static function getBlockLabel(): string
+    {
+        return "Upcoming Events";
+    }
 
     public function setData($data): array
     {
@@ -16,12 +27,10 @@ class UpcomingEventsBlock extends ContentBlock
         return parent::setData($data);
     }
 
-    public static function getBlockSchema(): Block
+    public static function getBlockFields(): array
     {
-        return Block::make('upcoming-events-block')
-            ->label('Upcoming Events')
-            ->schema([
-                Forms\Components\TextInput::make('heading'),
+        return [
+            Forms\Components\TextInput::make('heading'),
                 Forms\Components\TextInput::make('subheading'),
                 Forms\Components\Select::make('events_count')
                     ->options([
@@ -31,6 +40,6 @@ class UpcomingEventsBlock extends ContentBlock
                     ])
                     ->default(3)
                     ->required()
-            ]);
+            ];
     }
 }

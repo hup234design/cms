@@ -81,12 +81,12 @@ class ContentBlock extends Component
 //            ]);
 //    }
 //
-    public static function getBlockSchema(): Block {
-        return Block::make('content-block')
-            ->schema([
-                //...FormComponents::contentBlockDefaults()
-            ]);
-    }
+//    public static function getBlockSchema(): Block {
+//        return Block::make('content-block')
+//            ->schema([
+//                //...FormComponents::contentBlockDefaults()
+//            ]);
+//    }
 
     public function setData($data) : array {
         return $this->data = $data;

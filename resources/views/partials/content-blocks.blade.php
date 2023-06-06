@@ -1,7 +1,9 @@
 @props(['blocks' => []])
 
-<div class="mt-8 space-y-16">
+<div class="">
     @foreach( $blocks ?? [] as $block )
-        @livewire($block['type'], ['data' => $block['data']])
+        <div class="py-16">
+            @livewire($block['type'], ['data' => $block['data']])
+        </div>
     @endforeach
 </div>
