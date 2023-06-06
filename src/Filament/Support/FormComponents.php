@@ -45,11 +45,11 @@ class FormComponents
         return array_merge(
             [
                 EditorBlock::schema(),
-                EditorImageBlock::getBlockSchema(),
-                ImageBlock::getBlockSchema(),
-                GalleryBlock::getBlockSchema(),
-                LatestPostsBlock::getBlockSchema(),
-                UpcomingEventsBlock::getBlockSchema(),
+                EditorImageBlock::schema(),
+                ImageBlock::schema(),
+                GalleryBlock::schema(),
+                LatestPostsBlock::schema(),
+                UpcomingEventsBlock::schema(),
             ],
             config('cms.content_blocks')
         );
@@ -59,7 +59,7 @@ class FormComponents
     {
         return array_merge(
             [
-                SliderBlock::getBlockSchema(),
+                SliderBlock::schema(),
             ],
             config('cms.header_blocks')
         );
