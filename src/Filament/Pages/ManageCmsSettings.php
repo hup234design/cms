@@ -37,17 +37,17 @@ class ManageCmsSettings extends Page
             "contact_email" => "",
             "contact_address" => "",
             "contact_map" => "",
-            "enquiries_enabled" => 0,
-            "enquiries_max_characters" => "1000",
+//            "enquiries_enabled" => 0,
+//            "enquiries_max_characters" => "1000",
             "events_enabled" => 0,
             "events_slug" => "events",
             "events_title" => "Events",
-            "services_enabled" => 0,
-            "services_slug" => "services",
-            "services_title" => "Services",
-            "testimonials_enabled" => 0,
-            "testimonials_slug" => "testimonials",
-            "testimonials_title" => "Testimonials"
+//            "services_enabled" => 0,
+//            "services_slug" => "services",
+//            "services_title" => "Services",
+//            "testimonials_enabled" => 0,
+//            "testimonials_slug" => "testimonials",
+//            "testimonials_title" => "Testimonials"
         ];
 
         foreach ($requiredKeys as $key=>$value) {
@@ -95,55 +95,55 @@ class ManageCmsSettings extends Page
                                 ])
                                 ->hidden(fn (Closure $get) => intval($get('state.events_enabled')) == 0 ),
                         ]),
-                    Forms\Components\Tabs\Tab::make('Services')
-                        ->schema([
-                            Forms\Components\Toggle::make('state.services_enabled')
-                                ->reactive()
-                                ->label('Enabled'),
-                            Forms\Components\Group::make()
-                                ->schema([
-                                    Forms\Components\TextInput::make('state.services_title')
-                                        ->label('Title')
-                                        ->required(),
-                                    Forms\Components\TextInput::make('state.services_slug')
-                                        ->label('Slug')
-                                        ->required(),
-                                ])
-                                ->hidden(fn (Closure $get) => ! $get('state.services_enabled') ),
-                        ]),
-                    Forms\Components\Tabs\Tab::make('Testimonials')
-                        ->schema([
-                            Forms\Components\Toggle::make('state.testimonials_enabled')
-                                ->reactive()
-                                ->label('Enabled'),
-                            Forms\Components\Group::make()
-                                ->schema([
-                                    Forms\Components\TextInput::make('state.testimonials_title')
-                                        ->label('Title')
-                                        ->required(),
-                                    Forms\Components\TextInput::make('state.testimonials_slug')
-                                        ->label('Slug')
-                                        ->required(),
-                                ])
-                                ->hidden(fn (Closure $get) => ! $get('state.testimonials_enabled') ),
-                        ]),
-                    Forms\Components\Tabs\Tab::make('Enquiries')
-                        ->schema([
-                            Forms\Components\Toggle::make('state.enquiries_enabled')
-                                ->reactive()
-                                ->label('Enabled'),
-                            Forms\Components\Group::make()
-                                ->schema([
-                                    Forms\Components\TextInput::make('state.enquiries_max_characters')
-                                        ->label('Max Characters')
-                                        ->numeric()
-                                        ->required()
-                                        ->minValue(500)
-                                        ->maxValue(2500)
-                                        ->step(50),
-                                ])
-                                ->hidden(fn (Closure $get) => ! $get('state.enquiries_enabled') ),
-                        ]),
+//                    Forms\Components\Tabs\Tab::make('Services')
+//                        ->schema([
+//                            Forms\Components\Toggle::make('state.services_enabled')
+//                                ->reactive()
+//                                ->label('Enabled'),
+//                            Forms\Components\Group::make()
+//                                ->schema([
+//                                    Forms\Components\TextInput::make('state.services_title')
+//                                        ->label('Title')
+//                                        ->required(),
+//                                    Forms\Components\TextInput::make('state.services_slug')
+//                                        ->label('Slug')
+//                                        ->required(),
+//                                ])
+//                                ->hidden(fn (Closure $get) => ! $get('state.services_enabled') ),
+//                        ]),
+//                    Forms\Components\Tabs\Tab::make('Testimonials')
+//                        ->schema([
+//                            Forms\Components\Toggle::make('state.testimonials_enabled')
+//                                ->reactive()
+//                                ->label('Enabled'),
+//                            Forms\Components\Group::make()
+//                                ->schema([
+//                                    Forms\Components\TextInput::make('state.testimonials_title')
+//                                        ->label('Title')
+//                                        ->required(),
+//                                    Forms\Components\TextInput::make('state.testimonials_slug')
+//                                        ->label('Slug')
+//                                        ->required(),
+//                                ])
+//                                ->hidden(fn (Closure $get) => ! $get('state.testimonials_enabled') ),
+//                        ]),
+//                    Forms\Components\Tabs\Tab::make('Enquiries')
+//                        ->schema([
+//                            Forms\Components\Toggle::make('state.enquiries_enabled')
+//                                ->reactive()
+//                                ->label('Enabled'),
+//                            Forms\Components\Group::make()
+//                                ->schema([
+//                                    Forms\Components\TextInput::make('state.enquiries_max_characters')
+//                                        ->label('Max Characters')
+//                                        ->numeric()
+//                                        ->required()
+//                                        ->minValue(500)
+//                                        ->maxValue(2500)
+//                                        ->step(50),
+//                                ])
+//                                ->hidden(fn (Closure $get) => ! $get('state.enquiries_enabled') ),
+//                        ]),
                     Forms\Components\Tabs\Tab::make('Posts')
                         ->schema([
                             Forms\Components\TextInput::make('state.posts_title')

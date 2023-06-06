@@ -16,6 +16,9 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use RalphJSmit\Filament\Components\Forms\Sidebar;
+use RalphJSmit\Filament\Components\Forms\Timestamps;
+use RalphJSmit\Filament\SEO\SEO;
 
 class PostResource extends Resource
 {
@@ -29,41 +32,60 @@ class PostResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                TitleWithSlugInput::make(
-                    fieldTitle: 'title', // The name of the field in your model that stores the title.
-                    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
-                    urlPath: '/posts/',
-                ),
-                Forms\Components\Select::make('post_category_id')
-                    ->label('Category')
-                    ->relationship('category','title')
-                    ->nullable()
-                    ->createOptionForm([
-                        TitleWithSlugInput::make(
-                            fieldTitle: 'title', // The name of the field in your model that stores the title.
-                            fieldSlug: 'slug', // The name of the field in your model that will store the slug.
-                            urlVisitLinkVisible: false,
-                        ),
-                        Forms\Components\Textarea::make('description')
-                            ->rows(5),
-                    ]),
-                Forms\Components\Textarea::make('summary')
-                    ->rows(3)
-                    ->required(),
-                Forms\Components\DateTimePicker::make('publish_at')
-                    ->default(Carbon::now())
-                    ->required(),
-                Forms\Components\Toggle::make('published')
-                    ->default(false),
-                Forms\Components\Builder::make('content_blocks')
-                    ->blocks(
-                        FormComponents::contentBlocks()
-                    )
-                    ->collapsible()
-            ])
-            ->columns(1);
+        return Sidebar::make($form)->schema([
+            Forms\Components\Textarea::make('summary')
+                ->rows(3)
+                ->required()
+                ->columnSpanFull(),
+            Forms\Components\Section::make('Content')
+                ->schema([
+                    Forms\Components\Builder::make('content_blocks')
+                        ->label(false)
+                        ->blocks(
+                            FormComponents::contentBlocks()
+                        )
+                        ->createItemButtonLabel('Add Content Block')
+                        ->collapsible()
+                ])
+                ->collapsible()
+                ->collapsed(false)
+        ], [
+            Forms\Components\Section::make('General')
+                ->schema([
+                    TitleWithSlugInput::make(
+                        fieldTitle: 'title', // The name of the field in your model that stores the title.
+                        fieldSlug: 'slug', // The name of the field in your model that will store the slug.
+                        urlPath: '/posts/',
+                    ),
+                    Forms\Components\Select::make('post_category_id')
+                        ->label('Category')
+                        ->relationship('category','title')
+                        ->nullable()
+                        ->createOptionForm([
+                            TitleWithSlugInput::make(
+                                fieldTitle: 'title', // The name of the field in your model that stores the title.
+                                fieldSlug: 'slug', // The name of the field in your model that will store the slug.
+                                urlVisitLinkVisible: false,
+                            ),
+                            Forms\Components\Textarea::make('description')
+                                ->rows(5),
+                        ]),
+                    Forms\Components\DateTimePicker::make('publish_at')
+                        ->default(Carbon::now())
+                        ->required(),
+                    Forms\Components\Toggle::make('published')
+                        ->default(false),
+                    ...Timestamps::make(),
+                ])
+                ->collapsible()
+                ->collapsed(false),
+            Forms\Components\Section::make('SEO')
+                ->schema([
+                    SEO::make()
+                ])
+                ->collapsible()
+                ->collapsed(true)
+        ]);
     }
 
     public static function table(Table $table): Table

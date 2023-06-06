@@ -133,8 +133,8 @@ class CmsServiceProvider extends PluginServiceProvider
             Filament::registerNavigationGroups([
                 'Post Management',
                 'Page Management',
-                'Content Management',
                 'Event Management',
+                'Content Management',
 //                'Enquiries',
                 'Settings',
             ]);

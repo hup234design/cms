@@ -22,6 +22,10 @@ class EventCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Event Management';
+
+    protected static ?int $navigationSort = 2;
+
     protected static function shouldRegisterNavigation(): bool
     {
         return cms_settings('events_enabled', false);
