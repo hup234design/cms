@@ -8,6 +8,10 @@
     @isset($record->title)
         <div class="prose max-w-none">
             <h1>{{ $record->title }}</h1>
+
+            @isset($record->content)
+                {!! $record->content !!}
+            @endisset
         </div>
     @endisset
 </div>

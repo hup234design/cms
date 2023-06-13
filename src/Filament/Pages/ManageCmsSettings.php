@@ -76,7 +76,6 @@ class ManageCmsSettings extends Page
                                         ->size('lg')
                                         ->constrained(true)
                                         ->preserveFilenames()
-                                        ->required()
                                 ])
                         ]),
                     Forms\Components\Tabs\Tab::make('Events')
