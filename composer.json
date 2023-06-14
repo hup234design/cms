@@ -28,6 +28,7 @@
         "ralphjsmit/laravel-filament-components": "dev-main",
         "ralphjsmit/laravel-filament-seo": "^1.0",
         "ryangjchandler/filament-navigation": "^0.5.0",
+        "shuvroroy/filament-spatie-laravel-backup": "dev-main",
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-honeypot": "^4.3",
         "spatie/laravel-ray": "^1.32",
