@@ -51,6 +51,9 @@ class PageResource extends Resource
                 ->collapsed(true),
             Forms\Components\Section::make('Content')
                 ->schema([
+                    TiptapEditor::make('content')
+                        ->profile('custom')
+                        ->maxContentWidth('full'),
                     Forms\Components\Builder::make('content_blocks')
                         ->label(false)
                         ->blocks(
