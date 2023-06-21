@@ -16,7 +16,7 @@ return new class extends Migration
         });
 
         Schema::table('index_pages', function (Blueprint $table) {
-            $table->longText('content')->after('slug')->nullable();
+            $table->longText('content')->after('title')->nullable();
         });
     }
 
