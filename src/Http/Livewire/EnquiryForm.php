@@ -15,12 +15,24 @@ class EnquiryForm extends Component implements Forms\Contracts\HasForms
     use Forms\Concerns\InteractsWithForms;
     use UsesSpamProtection;
 
+    public $x = 20;
+    public $y = 5;
+    public $answer = 15;
+
     public $submitted = false;
 
     public HoneypotData $extraFields;
 
+    public function resetQuiz()
+    {
+        $this->x = rand(10,20);
+        $this->y = rand(1,5);
+    }
+
     public function mount(): void
     {
+        $this->resetQuiz();
+
         $this->extraFields = new HoneypotData();
         $this->form->fill([
             'first_name' => 'Dave',
@@ -52,6 +64,18 @@ class EnquiryForm extends Component implements Forms\Contracts\HasForms
                 ->rows(5)
                 //->maxLength(app(CmsSettings::class)->enquiries_max_characters)
                 ->required(),
+            Forms\Components\Textinput::make('quiz')
+                ->label('What is '.$this->x.' - '.$this->y.' ?')
+                ->required()
+                ->rules([
+                    function () {
+                        return function ($attribute, $value, \Closure $fail) {
+                            if ($value != $this->x - $this->y) {
+                                $fail("That answer is incorrect.");
+                            }
+                        };
+                    }
+                ])
             //->helperText('Max ' . app(CmsSettings::class)->enquiries_max_characters . ' characters'),
         ];
     }
@@ -61,47 +85,18 @@ class EnquiryForm extends Component implements Forms\Contracts\HasForms
         return Enquiry::class;
     }
 
-    //    protected function protectAgainstSpam(): void
-    //    {
-    //        $honeypotData = $this->guessHoneypotDataProperty();
-    //
-    //        if (is_null($honeypotData)) {
-    //            throw new \Exception("Livewire component requires a `HoneypotData` property.");
-    //        }
-    //
-    //        $this->submitted = true;
-    //
-    //        try {
-    //            app(SpamProtection::class)->check($honeypotData->toArray());
-    //        } catch (SpamException) {
-    //            ray("need to do shot with spam");
-    //        }
-    //    }
-
     public function submit(): void
     {
         $this->validate();
-
         $this->submitted = true;
-
         $data = $this->form->getState();
-
         $data['ip_address'] = request()->ip();
-
-        ray($data);
-
         $honeypotData = $this->guessHoneypotDataProperty();
-
-        ray($honeypotData);
-
         try {
             app(SpamProtection::class)->check($honeypotData->toArray());
-            ray('not spam');
         } catch (SpamException) {
-            ray('spam');
             $data['spam'] = true;
         }
-
         $enquiry = Enquiry::create($data);
     }
 

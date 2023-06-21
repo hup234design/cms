@@ -15,7 +15,7 @@ class PageController extends Controller
 
         return view('cms::pages.home', [
             'record' => $page
-        ], );
+        ]);
     }
 
     public function page($slug): View
