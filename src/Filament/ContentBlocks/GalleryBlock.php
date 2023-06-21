@@ -25,11 +25,18 @@ class GalleryBlock extends ContentBlock implements ContentBlockTemplate
 
     public function setData($data): array {
         $gallery = [];
-        foreach($data['images'] ?? [] as $image_id) {
-            if( $media = Media::find($image_id)) {
+        if( is_array($data['images'])) {
+            foreach($data['images'] ?? [] as $image_id) {
+                if( $media = Media::find($image_id)) {
+                    $gallery[] = $media;
+                }
+            }
+        } else {
+            if( $media = Media::find($data['images'])) {
                 $gallery[] = $media;
             }
         }
+
         $data['gallery'] = $gallery;
         return $data;
     }
