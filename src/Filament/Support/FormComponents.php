@@ -49,7 +49,7 @@ class FormComponents
                 GalleryBlock::schema(),
                 LatestPostsBlock::schema(),
                 UpcomingEventsBlock::schema(),
-                ...array_map(fn($block) => app()->call($block()), config('cms.content_blocks'))
+                ...array_map(fn($block) => app()->call($block), config('cms.content_blocks'))
         ];
     }
 
