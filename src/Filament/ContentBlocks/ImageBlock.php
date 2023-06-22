@@ -53,7 +53,8 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
             Select::make('preset')
                 ->options(function(callable $get) {
                     return media_curations( Arr::first(collect($get('image_id')))['curations'] ?? [] );
-                }),
+                })
+                ->hidden(fn (\Closure $get) => ! $get('image_id')),
             Select::make('width')
                 ->options([
                     'full' => 'Full',
@@ -61,6 +62,7 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
                     '2/3'  => '2/3',
                     '1/2'  => '1/2'
                 ])
+                ->hidden(fn (\Closure $get) => ! $get('image_id')),
 
         ];
     }
