@@ -11,6 +11,7 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\ViewField;
 use Hup234design\Cms\Contracts\ContentBlockTemplate;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 class ImageBlock extends ContentBlock implements ContentBlockTemplate
@@ -51,23 +52,7 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
                     ->columnSpanFull(),
                 Select::make('preset')
                     ->options(function(callable $get) {
-                        $options = ['original' => 'Original'];
-
-                        if( $media = $get('image_id') ) {
-                            if( $curations = $media['curations'] ?? false) {
-                                foreach (reset($curations) as $curation) {
-                                    $key = $curation['curation']['key'];
-                                    $options[$key] = 'Curation: ' . $key;
-                                }
-                            }
-                        }
-                        if ($presets = Curator::getCurationPresets()) {
-                            foreach ($presets as $preset) {
-                                $options[$preset['key']] = 'Preset: ' . $preset['name'];
-                            }
-                        }
-
-                        return $options;
+                        return media_curations( Arr::first(collect($get('image_id'))) );
                     }),
                 Select::make('width')
                     ->options([

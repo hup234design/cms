@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use FilamentTiptapEditor\TiptapEditor;
 use Hup234design\Cms\Contracts\ContentBlockTemplate;
 use Hup234design\Cms\Filament\Support\FormComponents;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 class EditorImageBlock extends ContentBlock implements ContentBlockTemplate
@@ -46,23 +47,23 @@ class EditorImageBlock extends ContentBlock implements ContentBlockTemplate
 //                ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
 //                ->columnSpanFull(),
             Forms\Components\Group::make([
-                    CuratorPicker::make('image_id')
-                        ->multiple(false)
-                        ->label('Image')
-                        ->buttonLabel('Select Image')
-                        ->size('lg')
+                CuratorPicker::make('image_id')
+                    ->multiple(false)
+                    ->label('Image')
+                    ->buttonLabel('Select Image')
+                    ->size('lg')
 //                    ->constrained(true)
-                        ->preserveFilenames()
-                        ->reactive(),
-                    Forms\Components\Group::make([
-                            Select::make('preset')
-                                ->label('Curation')
-                                ->options(function(callable $get) {
-                                    return media_curations($get('image_id') );
-                                })
-                                ->hidden(fn (\Closure $get) => ! $get('image_id')),
-                        ])
+                    ->preserveFilenames()
+                    ->reactive(),
+                Forms\Components\Group::make([
+                    Select::make('preset')
+                        ->label('Curation')
+                        ->options(function(callable $get) {
+                            return media_curations( Arr::first(collect($get('image_id'))) );
+                        })
+                        ->hidden(fn (\Closure $get) => ! $get('image_id')),
                 ])
+            ])
                 ->columns(2)
         ];
     }
