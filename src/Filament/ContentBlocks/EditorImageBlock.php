@@ -58,9 +58,7 @@ class EditorImageBlock extends ContentBlock implements ContentBlockTemplate
                 Forms\Components\Group::make([
                     Select::make('preset')
                         ->label('Curation')
-                        ->options(function(callable $get) {
-                            return media_curations( Arr::first(collect($get('image_id'))) );
-                        })
+                        ->options(media_curations())
                         ->hidden(fn (\Closure $get) => ! $get('image_id')),
                 ])
             ])

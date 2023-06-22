@@ -16,18 +16,12 @@ if (!function_exists('cms_settings')) {
 }
 
 if (!function_exists('media_curations')) {
-    function media_curations($curations)
+    function media_curations()
     {
         $options = [];
-        foreach ($curations ?? [] as $curation) {
-            $key = $curation['curation']['key'];
-            $options[$key] = 'Curation: ' . $key;
-        }
         if ($presets = Curator::getCurationPresets()) {
             foreach ($presets as $preset) {
-                if( ! array_key_exists($preset['key'], $options) ) {
-                    $options[$preset['key']] = 'Preset: ' . $preset['name'];
-                }
+                $options[$preset['key']] = $preset['name'];
             }
         }
         return $options;

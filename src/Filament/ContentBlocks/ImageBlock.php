@@ -51,9 +51,7 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
                 ->reactive()
                 ->columnSpanFull(),
             Select::make('preset')
-                ->options(function(callable $get) {
-                    return media_curations( Arr::first(collect($get('image_id')))['curations'] ?? [] );
-                })
+                ->options(media_curations())
                 ->hidden(fn (\Closure $get) => ! $get('image_id')),
             Select::make('width')
                 ->options([
