@@ -38,30 +38,30 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
     {
         return [
             Placeholder::make('Note')
-                    ->label(false)
-                    ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
-                    ->columnSpanFull(),
-                CuratorPicker::make('image_id')
-                    ->multiple(false)
-                    ->label('Image')
-                    ->buttonLabel('Select Image')
-                    ->size('lg')
+                ->label(false)
+                ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
+                ->columnSpanFull(),
+            CuratorPicker::make('image_id')
+                ->multiple(false)
+                ->label('Image')
+                ->buttonLabel('Select Image')
+                ->size('lg')
 //                    ->constrained(true)
-                    ->preserveFilenames()
-                    ->reactive()
-                    ->columnSpanFull(),
-                Select::make('preset')
-                    ->options(function(callable $get) {
-                        return media_curations( Arr::first(collect($get('image_id'))) );
-                    }),
-                Select::make('width')
-                    ->options([
-                        'full' => 'Full',
-                        '3/4'  => '3/4',
-                        '2/3'  => '2/3',
-                        '1/2'  => '1/2'
-                    ])
+                ->preserveFilenames()
+                ->reactive()
+                ->columnSpanFull(),
+            Select::make('preset')
+                ->options(function(callable $get) {
+                    return media_curations( Arr::first(collect($get('image_id')))['curations'] ?? [] );
+                }),
+            Select::make('width')
+                ->options([
+                    'full' => 'Full',
+                    '3/4'  => '3/4',
+                    '2/3'  => '2/3',
+                    '1/2'  => '1/2'
+                ])
 
-            ];
+        ];
     }
 }

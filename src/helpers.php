@@ -16,16 +16,12 @@ if (!function_exists('cms_settings')) {
 }
 
 if (!function_exists('media_curations')) {
-    function media_curations(\Awcodes\Curator\Models\Media $media = null)
+    function media_curations($curations = [])
     {
         $options = [];
-        if( $media ) {
-            if( $curations = $media['curations'] ?? false) {
-                foreach (reset($curations) as $curation) {
-                    $key = $curation['curation']['key'];
-                    $options[$key] = 'Curation: ' . $key;
-                }
-            }
+        foreach ($curations as $curation) {
+            $key = $curation['curation']['key'];
+            $options[$key] = 'Curation: ' . $key;
         }
         if ($presets = Curator::getCurationPresets()) {
             foreach ($presets as $preset) {
