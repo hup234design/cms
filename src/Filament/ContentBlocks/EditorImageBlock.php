@@ -41,39 +41,29 @@ class EditorImageBlock extends ContentBlock implements ContentBlockTemplate
             TiptapEditor::make('content')
                 ->profile('custom')
                 ->maxContentWidth('full'),
-            Placeholder::make('Note')
-                ->label(false)
-                ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
-                ->columnSpanFull(),
-            CuratorPicker::make('image_id')
-                ->multiple(false)
-                ->label('Image')
-                ->buttonLabel('Select Image')
-                ->size('lg')
+//            Placeholder::make('Note')
+//                ->label(false)
+//                ->content(new HtmlString('<span class="text-sm italic">Please select a single image. There is an open issue with the image picker that allows multiple selctions. If more than one image is selected, only the first image will be used. For multiple please use gallery block.</span>'))
+//                ->columnSpanFull(),
+            Forms\Components\Group::make([
+                    CuratorPicker::make('image_id')
+                        ->multiple(false)
+                        ->label('Image')
+                        ->buttonLabel('Select Image')
+                        ->size('lg')
 //                    ->constrained(true)
-                ->preserveFilenames()
-                ->reactive()
-                ->columnSpanFull(),
-            Select::make('preset')
-                ->options(function(callable $get) {
-                    $options = ['original' => 'Original'];
-
-                    if( $media = $get('image_id') ) {
-                        if( $curations = $media['curations'] ?? false) {
-                            foreach (reset($curations) as $curation) {
-                                $key = $curation['curation']['key'];
-                                $options[$key] = 'Curation: ' . $key;
-                            }
-                        }
-                    }
-                    if ($presets = Curator::getCurationPresets()) {
-                        foreach ($presets as $preset) {
-                            $options[$preset['key']] = 'Preset: ' . $preset['name'];
-                        }
-                    }
-
-                    return $options;
-                }),
+                        ->preserveFilenames()
+                        ->reactive(),
+                    Forms\Components\Group::make([
+                            Select::make('preset')
+                                ->label('Curation')
+                                ->options(function(callable $get) {
+                                    return media_curations($get('image_id') );
+                                })
+                                ->hidden(fn (\Closure $get) => ! $get('image_id')),
+                        ])
+                ])
+                ->columns(2)
         ];
     }
 }
